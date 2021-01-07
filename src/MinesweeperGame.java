@@ -7,8 +7,10 @@ public class MinesweeperGame{
 	
 	public MinesweeperGame() {
 		this.knownGameState = new int[10][10] ;
+		this.gameState = new int[10][10] ;
 		this.sizex=10;
 		this.sizey=10;
+		randomBombGenerator(10);
 	}
 
 	// transfer given [x,y] set from gamestate to knowngamestate.
@@ -19,8 +21,13 @@ public class MinesweeperGame{
 		
 		return knownGameState;
 	}
+	// genererer alle felter til 0, herefter indsættes bomber
 	public void randomBombGenerator(int antalBomber) {
-		
+		for (int i=0; i<this.sizey; i++) {
+			for ( int j=0; j<this.sizex;j++) {
+				this.gameState[j][i]=1;
+			}
+		}
 	}
 	public int getSizex() {
 		return this.sizex;

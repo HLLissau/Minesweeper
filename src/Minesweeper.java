@@ -24,12 +24,14 @@ public class Minesweeper {
 			int[] nextTile = getNextInput(game, input);
 			game.getPos(nextTile);
 			//test new pos
+			showGameState(game);
 		}
 	}
 	
+	// get next cell from console to check, returned as int[] {x,y}
 	public static int[] getNextInput(MinesweeperGame game, Scanner input) {
 	System.out.println("Enter x and y coordinates");
-	int[] nextInput = new int[] {getUserInt(input,0,game.getSizex()), getUserInt(input,0,game.getSizey())}; 
+	int[] nextInput = new int[] {getUserInt(input,0,game.getSizex()-1), getUserInt(input,0,game.getSizey()-1)}; 
 	System.out.println("You entered: x=" + nextInput[0] + ", y=" + nextInput[1]);
 	return nextInput;
 	}
@@ -51,4 +53,14 @@ public class Minesweeper {
         }
         return i;
     }
+
+	public static void showGameState(MinesweeperGame game) {
+		for (int i=game.getSizey();i>0; i--) {
+			for ( int j=0; j<game.getSizex();j++) {
+				System.out.print(game.knownGameState[j][i-1]);
+			}
+		System.out.println();	
+		}
+	}
 }
+	
