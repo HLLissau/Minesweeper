@@ -1,8 +1,19 @@
-public MinesweeperGame{
+public class MinesweeperGame{
 	
+	public int[][] knownGameState;
+	private int[][] gameState;
 	
-	public Minesweepergame() {
-		
+	public MinesweeperGame() {
+		this.knownGameState = new int[10][10] ;
 	}
+
+	
+	public int[][] getPos() {
+		
+		
+		
+		return knownGameState;
+	}
+	
 	
 }
