@@ -1,6 +1,6 @@
 package minesweeper;
 // This is the main file for Minesweeper. 
-public class startup {
+public class Startup {
 	
 	public static void main(String[] args) {
 		scanner console= new Scanner(System.in);
