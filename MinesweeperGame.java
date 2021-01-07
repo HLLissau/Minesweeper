@@ -14,6 +14,9 @@ public class MinesweeperGame{
 		
 		return knownGameState;
 	}
+	public void randomBombGenerator(int antalBomber) {
+		
+	}
 	
 	
 }
