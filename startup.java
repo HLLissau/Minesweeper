@@ -3,6 +3,7 @@ package minesweeper;
 public class startup {
 	
 	public static void main(String[] args) {
+		scanner console= new Scanner(System.in);
 		initializeGame();
 		introduction();
 		mainMenu();
@@ -18,6 +19,10 @@ public class startup {
 	}
 	
 	public static void mainMenu() {
+		game= new MinesweeperGame();
+		for (;;) {
+			
+		}
 		
 	}
 	
