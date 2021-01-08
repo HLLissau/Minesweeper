@@ -85,12 +85,11 @@ public class MinesweeperGame{
 					for (int k = -1; k <= 1; k++) {
 						for (int l =-1; l <= 1; l++) {
 							if (k!=0 || l!=0) {
-								if (i+k >= 0 && i+k < this.sizey && j+l >=0 && j+l < this.sizex) {
+								if (i+k >= 0 && i+k < this.sizex && j+l >=0 && j+l < this.sizey) {
 									gameState[i+k][j+l] += 1;
 									if (gameState[i+k][j+l] > 9) gameState[i+k][j+l] = 9;
 								}
 							}
-							
 						}
 					}
 				}
