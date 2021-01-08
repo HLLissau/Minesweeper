@@ -12,8 +12,18 @@ public class MinesweeperGame{
 		this.sizex=10;
 		this.sizey=10;
 		randomBombGenerator(10);
+		nearBombs();
 	}
-
+	
+	public MinesweeperGame(int sizex, int sizey, int bombAmount) {
+		this.knownGameState = new int[sizex][sizey] ;
+		this.gameState = new int[sizex][sizey];
+		this.sizex=sizex;
+		this.sizey=sizey;
+		randomBombGenerator(bombAmount);
+		nearBombs();
+	}
+ 
 	// transfer given [x,y] set from gamestate to knowngamestate.
 	public int[][] getPos( int[] position) {
 		this.knownGameState[position[0]][position[1]]=this.gameState[position[0]][position[1]];
@@ -49,17 +59,26 @@ public class MinesweeperGame{
 	}
 	
 	public void nearBombs() {
-		for (int i = 0; i < gameState.length; i++) {
-			for (int j = 0; j < gameState[i].length; j++) {
+		for (int i = 0; i < this.sizex; i++) {
+			for (int j = 0; j < this.sizey; j++) {
 				if (gameState[i][j] == 9) {
-					for (int k = 1; k < 3; k++) {
-						for (int l =-1; l < 1; l++) {
-							if (k==0 && j==0) j++;
-							gameState[i+l][j+k]++;
+					for (int k = -1; k <= 1; k++) {
+						for (int l =-1; l <= 1; l++) {
+							if (k!=0 || l!=0) {
+								if (i+k >= 0 && i+k < this.sizey && j+l >=0 && j+l < this.sizex) {
+									gameState[i+k][j+l] += 1;
+									if (gameState[i+k][j+l] > 9) gameState[i+k][j+l] = 9;
+								}
+							}
+							
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	public int[][] getGameState() {
+		return gameState;
 	}
 }
