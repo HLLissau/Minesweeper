@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -17,7 +18,7 @@ public class Minesweeper {
 		
 	}
 	public static void mainMenu() {
-		MinesweeperGame game = new MinesweeperGame();
+		MinesweeperGame game = new MinesweeperGame(10, 20, 10);
 		//point size= game.getSize();
 		int spilTilstand = 0;
 		for(;;) {
@@ -30,6 +31,8 @@ public class Minesweeper {
 				break;
 			}
 			showGameState(game);
+			System.out.println();
+			gameState(game);
 		}
 		if (spilTilstand == 8) {
 			victory();
@@ -76,6 +79,15 @@ public class Minesweeper {
 		for (int i=game.getSizey();i>0; i--) {
 			for ( int j=0; j<game.getSizex();j++) {
 				System.out.print(game.knownGameState[j][i-1]);
+			}
+		System.out.println();	
+		}
+	}
+	
+	public static void gameState(MinesweeperGame game) {
+		for (int i=game.getSizey();i>0; i--) {
+			for ( int j=0; j<game.getSizex();j++) {
+				System.out.print(game.getGameState()[j][i-1]);
 			}
 		System.out.println();	
 		}
