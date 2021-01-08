@@ -79,15 +79,15 @@ public class MinesweeperGame{
 	}
 	
 	public void nearBombs() {
-		for (int i = 0; i < this.sizex; i++) {
-			for (int j = 0; j < this.sizey; j++) {
-				if (gameState[i][j] == 9) {
+		for (int i = 0; i < this.sizey; i++) {
+			for (int j = 0; j < this.sizex; j++) {
+				if (gameState[j][i] == 9) {
 					for (int k = -1; k <= 1; k++) {
 						for (int l =-1; l <= 1; l++) {
 							if (k!=0 || l!=0) {
-								if (i+k >= 0 && i+k < this.sizex && j+l >=0 && j+l < this.sizey) {
-									gameState[i+k][j+l] += 1;
-									if (gameState[i+k][j+l] > 9) gameState[i+k][j+l] = 9;
+								if (i+k >= 0 && i+k < this.sizey && j+l >=0 && j+l < this.sizex) {
+									gameState[j+l][i+k] += 1;
+									if (gameState[j+l][i+k] > 9) gameState[j+l][i+k] = 9;
 								}
 							}
 						}

@@ -18,7 +18,7 @@ public class Minesweeper {
 		
 	}
 	public static void mainMenu() {
-		MinesweeperGame game = new MinesweeperGame(10, 20, 10);
+		MinesweeperGame game = new MinesweeperGame(15, 10, 10);
 		//point size= game.getSize();
 		int spilTilstand = 0;
 		for(;;) {
@@ -27,7 +27,7 @@ public class Minesweeper {
 			game.getPos(nextTile);
 			//test new pos
 			spilTilstand=game.testConditions(nextTile);
-			if (spilTilstand == 9 && spilTilstand == 8) {
+			if (spilTilstand == 9 || spilTilstand == 8) {
 				break;
 			}
 			showGameState(game);
