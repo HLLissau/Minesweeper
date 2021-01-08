@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class MinesweeperGame{
 	
 	public int[][] knownGameState;
@@ -25,8 +26,19 @@ public class MinesweeperGame{
 	public void randomBombGenerator(int antalBomber) {
 		for (int i=0; i<this.sizey; i++) {
 			for ( int j=0; j<this.sizex;j++) {
-				this.gameState[j][i]=1;
+				this.gameState[j][i]=0;
 			}
+		}
+		int antalFelter=(this.sizex*this.sizey);
+		ArrayList<Integer> brugtefelter = new ArrayList<Integer>();
+		for (int i=0; i<antalBomber;i++) {
+			int nextBomb= (int) (Math.random()*antalFelter);
+			System.out.println("Bombe : " + nextBomb);
+			int xKoordinat = nextBomb%sizex;
+			int yKoordinat = nextBomb/sizey;
+			System.out.println("Placering x:" + xKoordinat + ", y:" +yKoordinat);
+			this.gameState[xKoordinat][yKoordinat]= 9;
+
 		}
 	}
 	public int getSizex() {
