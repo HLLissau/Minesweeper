@@ -61,7 +61,7 @@ public class MinesweeperGame{
 	public int getSizey() {
 		return this.sizey;
 	}
-  <<<<<<< Viccondition
+	
 	public boolean victoryCondition() {
 		return ((this.sizex*this.sizey)-this.antalBomber == this.vendteFelter);
 	}
