@@ -21,7 +21,7 @@ public class MinesweeperGame{
 		
 		return knownGameState;
 	}
-	// genererer alle felter til 0, herefter indsættes bomber
+	// genererer alle felter til 0, herefter indsï¿½ttes bomber
 	public void randomBombGenerator(int antalBomber) {
 		for (int i=0; i<this.sizey; i++) {
 			for ( int j=0; j<this.sizex;j++) {
@@ -34,5 +34,20 @@ public class MinesweeperGame{
 	}
 	public int getSizey() {
 		return this.sizey;
+	}
+	
+	public void nearBombs() {
+		for (int i = 0; i < gameState.length; i++) {
+			for (int j = 0; j < gameState[i].length; j++) {
+				if (gameState[i][j] == 9) {
+					for (int k = 1; k < 3; k++) {
+						for (int l =-1; l < 1; l++) {
+							if (k==0 && j==0) j++;
+							gameState[i+l][j+k]++;
+						}
+					}
+				}
+			}
+		}
 	}
 }
