@@ -19,15 +19,33 @@ public class Minesweeper {
 	public static void mainMenu() {
 		MinesweeperGame game = new MinesweeperGame();
 		//point size= game.getSize();
+		int spilTilstand = 0;
 		for(;;) {
 			Scanner input= new Scanner(System.in);
 			int[] nextTile = getNextInput(game, input);
 			game.getPos(nextTile);
 			//test new pos
+			spilTilstand=game.testConditions(nextTile);
+			if (spilTilstand == 9 && spilTilstand == 8) {
+				break;
+			}
 			showGameState(game);
 		}
+		if (spilTilstand == 8) {
+			victory();
+		}
+		if (spilTilstand == 9) {
+			defeat();
+		}
+		
 	}
-	
+	public static void victory() {
+		System.out.println("Victory Royale!");
+	}
+	public static void defeat() {
+		System.out.println("Defeat screen :(");
+	}
+
 	// get next cell from console to check, returned as int[] {x,y}
 	public static int[] getNextInput(MinesweeperGame game, Scanner input) {
 	System.out.println("Enter x and y coordinates");
