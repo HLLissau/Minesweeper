@@ -49,7 +49,7 @@ public class MinesweeperGame{
 			int nextBomb= (int) (Math.random()*antalFelter);
 			System.out.println("Bombe : " + nextBomb);
 			int xKoordinat = nextBomb%sizex;
-			int yKoordinat = nextBomb/sizey;
+			int yKoordinat = nextBomb/sizex;
 			System.out.println("Placering x:" + xKoordinat + ", y:" +yKoordinat);
 			this.gameState[xKoordinat][yKoordinat]= 9;
 
