@@ -56,7 +56,7 @@ public class Snakefx extends Application implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent event) {
 		//if (event.getSource()==button) {
-			System.out.println("Test" + );
+			System.out.println("Test");
 		//}
 	}
 
