@@ -18,7 +18,7 @@ public class Minesweeper {
 		
 	}
 	public static void mainMenu() {
-		MinesweeperGame game = new MinesweeperGame(15, 10, 10);
+		MinesweeperGame game = new MinesweeperGame(10, 10, 99);
 		//point size= game.getSize();
 		int spilTilstand = 0;
 		for(;;) {
