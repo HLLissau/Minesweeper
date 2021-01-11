@@ -81,7 +81,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 			
 			System.out.println("End of start method");
 			
-			Scene scene = new Scene(layout, 300,250);
+			Scene scene = new Scene(layout, 350,300);
 			topLevelStage.setScene(scene);
 			topLevelStage.show();
 		
