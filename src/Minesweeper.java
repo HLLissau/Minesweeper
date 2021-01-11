@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -18,12 +19,12 @@ public class Minesweeper {
 		
 	}
 	public static void mainMenu() {
-		MinesweeperGame game = new MinesweeperGame(10, 10, 99);
+		MinesweeperGame game = new MinesweeperGame(10, 10, 98);
 		//point size= game.getSize();
 		int spilTilstand = 0;
 		for(;;) {
 			Scanner input= new Scanner(System.in);
-			int[] nextTile = getNextInput(game, input);
+			Point nextTile= getNextInput(game, input);
 			game.getPos(nextTile);
 			//test new pos
 			spilTilstand=game.testConditions(nextTile);
@@ -50,10 +51,10 @@ public class Minesweeper {
 	}
 
 	// get next cell from console to check, returned as int[] {x,y}
-	public static int[] getNextInput(MinesweeperGame game, Scanner input) {
+	public static Point getNextInput(MinesweeperGame game, Scanner input) {
 	System.out.println("Enter x and y coordinates");
-	int[] nextInput = new int[] {getUserInt(input,0,game.getSizex()-1), getUserInt(input,0,game.getSizey()-1)}; 
-	System.out.println("You entered: x=" + nextInput[0] + ", y=" + nextInput[1]);
+	Point nextInput = new Point(getUserInt(input,0,game.getSizex()-1), getUserInt(input,0,game.getSizey()-1)); 
+	System.out.println("You entered: x=" + nextInput.x + ", y=" + nextInput.y);
 	return nextInput;
 	}
 	//check a given int input is in range between min and max

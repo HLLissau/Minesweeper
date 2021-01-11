@@ -6,6 +6,8 @@ public class MinesweeperGame{
 	private int[][] gameState;
 	private int sizex;
 	private int sizey;
+	private int bombAmount;
+	private int firstClicked;
 	private int vendteFelter;
 	private int antalBomber;
 	private ArrayList<Point> ledigefelter;
@@ -16,8 +18,8 @@ public class MinesweeperGame{
 		this.sizex=10;
 		this.sizey=10;
 		this.vendteFelter=0;
-		randomBombGenerator(10);
-		nearBombs();
+		this.bombAmount= 10;
+		firstClicked=1;
 	}
 	
 	public MinesweeperGame(int sizex, int sizey, int bombAmount) {
@@ -25,36 +27,33 @@ public class MinesweeperGame{
 		this.gameState = new int[sizex][sizey];
 		this.sizex=sizex;
 		this.sizey=sizey;
-		randomBombGenerator(bombAmount);
-		nearBombs();
+		this.vendteFelter=0;
+		this.bombAmount= bombAmount;
+		firstClicked=1;
 	}
-	//sikre første felt markeret ikke indeholder en bombe.
-	public MinesweeperGame(int sizex, int sizey, int bombAmount, Point firstClicked) {
-		this.knownGameState = new int[sizex][sizey] ;
-		this.gameState = new int[sizex][sizey];
-		this.sizex=sizex;
-		this.sizey=sizey;
-		ledigefelter.add(firstClicked);
-		randomBombGenerator(bombAmount);
-		nearBombs();
-	}
+	
  
 	// transfer given [x,y] set from gamestate to knowngamestate.
-	public int[][] getPos( int[] position) {
-		this.knownGameState[position[0]][position[1]]=this.gameState[position[0]][position[1]];
+	public int[][] getPos( Point nextPos) {
+		if (firstClicked ==1) {
+			firstClicked =0;
+			randomBombGenerator(bombAmount, nextPos );
+			nearBombs();
+			
+		}
+		
+		this.knownGameState[nextPos.x][nextPos.y]=this.gameState[nextPos.x][nextPos.y];
 		vendteFelter += 1;
 		
 		
 		return knownGameState;
 	}
 	// genererer alle felter til 0, herefter indsættes bomber
-	public void randomBombGenerator(int antalBomber) {
+	public void randomBombGenerator(int antalBomber, Point firstClicked) {
 		this.antalBomber=antalBomber;
 		//laver liste af ledige felter til pladsering af bomber
 		int antalFelter=(this.sizex*this.sizey);
-		ledigefelter = new ArrayList<Point>();
-				
-		
+		this.ledigefelter = new ArrayList<Point>();
 		
 		//Sætter array felter til 0
 		for (int i=0; i<this.sizey; i++) {
@@ -63,10 +62,11 @@ public class MinesweeperGame{
 				ledigefelter.add(new Point(j,i));
 			}
 		}
+		ledigefelter.remove(firstClicked.x+this.sizex*firstClicked.y);
 		
 		//placeret bomberne og fjerne feltet fra Arraylist. Sikre at ingen bomber bliver placeret på samme felt
 		for (int i=0; i<antalBomber;i++) {
-			int nextBomb= (int) (Math.random()*(antalFelter-i));
+			int nextBomb= (int) (Math.random()*(antalFelter-i-1));
 			Point nextBombPlacement = ledigefelter.remove(nextBomb);
 			this.gameState[nextBombPlacement.x][nextBombPlacement.y]= 9;
 
@@ -85,8 +85,8 @@ public class MinesweeperGame{
 	public boolean defeatCondition(int x, int y) {
 		return gameState[x][y] == 9;
 	}
-	public int testConditions(int[] nextTile) {
-		if (defeatCondition(nextTile[0], nextTile[1])) {
+	public int testConditions(Point nextTile) {
+		if (defeatCondition(nextTile.x, nextTile.y)) {
 			return 9;
 		}
 		if (victoryCondition()) {
