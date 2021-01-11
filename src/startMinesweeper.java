@@ -19,8 +19,6 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		
 		public static void main(String[] args) {
 			launch(args);
-			preconfiguration();
-			introduction();
 			mainMenu();
 		}
 		public static void preconfiguration() {
@@ -29,7 +27,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		public static void introduction() {
 			
 		}
-		public static void mainMenu() {
+		public static void mainMenu( 	) {
 			MinesweeperGame game = new MinesweeperGame(10, 10, 98);
 			
 			//point size= game.getSize();
@@ -43,9 +41,9 @@ public class startMinesweeper extends Application implements EventHandler<Action
 				if (spilTilstand == 9 || spilTilstand == 8) {
 					break;
 				}
-				showGameState(game);
-				System.out.println();
-				gameState(game);
+//				showGameState(game);
+//				System.out.println();
+//				gameState(game);
 			}
 			if (spilTilstand == 8) {
 				victory();
@@ -88,13 +86,33 @@ public class startMinesweeper extends Application implements EventHandler<Action
 			topLevelStage.show();
 		
 		}
+		
+		public static Point getNextInput(MinesweeperGame game, Scanner input) {
+			System.out.println("Enter x and y coordinates");
+			Point nextInput = new Point(getUserInt(input,0,game.getSizex()-1), getUserInt(input,0,game.getSizey()-1)); 
+			System.out.println("You entered: x=" + nextInput.x + ", y=" + nextInput.y);
+			return nextInput;
+			}
+		//check a given int input is in range between min and max
+		public static int getUserInt(Scanner f, int min, int max) {
+			int i = 0;
+		    while (true) {
 
-
+		    	while (!f.hasNextInt()) {
+		                f.next();
+		        }
+		        i = f.nextInt();
+		        if (min <= i && i <= max) {
+		        	break;
+		        }
+		    }
+		    return i;
+		}
 
 		@Override
 		public void handle(ActionEvent event) {
 			//if (event.getSource()==button) {
-			GridPane.
+			//GridPane.
 			//}
 		}
 }
