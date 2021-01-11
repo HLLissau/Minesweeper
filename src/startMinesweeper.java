@@ -2,13 +2,15 @@ import java.awt.Point;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-public class startMinesweeper {
+public class startMinesweeper extends Application implements EventHandler<ActionEvent> {
 	
 
 
@@ -16,7 +18,7 @@ public class startMinesweeper {
 	
 		
 		public static void main(String[] args) {
-			
+			launch(args);
 			preconfiguration();
 			introduction();
 			mainMenu();
@@ -29,6 +31,7 @@ public class startMinesweeper {
 		}
 		public static void mainMenu() {
 			MinesweeperGame game = new MinesweeperGame(10, 10, 98);
+			
 			//point size= game.getSize();
 			int spilTilstand = 0;
 			for(;;) {
