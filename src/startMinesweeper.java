@@ -19,7 +19,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 	
 	MinesweeperModel model;
 	int spilTilstand;
-	int x,y;
+	int x,y,bombs;
 	GridPane grid;
 	MinesweeperController controller;
 	MinesweeperView view;
@@ -41,9 +41,10 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		
 	public void start(Stage topLevelStage) throws Exception {
 		int spilTilstand = 0;
-		x = 20;
-		y = 20;
-		model = new MinesweeperModel();
+		x = 10;
+		y = 10;
+		bombs = 99;
+		model = new MinesweeperModel(x,y,bombs);
 		view = new MinesweeperView();
 		controller = new MinesweeperController(model, view);
 		topLevelStage.setTitle("This is a title.");
