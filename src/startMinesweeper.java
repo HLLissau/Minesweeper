@@ -8,7 +8,10 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -39,11 +42,10 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		int spilTilstand = 0;
 		model= new MinesweeperModel();
 		controller = new MinesweeperController(model);
-		
-		
-		
 		topLevelStage.setTitle("This is a title.");
 		StackPane layout = new StackPane();
+		
+		
 		grid = new GridPane();
 		for (int i =0; i<10; i++) {
 			for (int j =0; j<10; j++) {
@@ -86,7 +88,6 @@ public class startMinesweeper extends Application implements EventHandler<Action
 	    }
 	    return i;
 	}
-		@Override
 	public void handle(ActionEvent event) {
 		controller.buttonPressed(grid, (MinesweeperButton)event.getSource() );
 	
