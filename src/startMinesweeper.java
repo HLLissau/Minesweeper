@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -30,7 +31,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		}
 		
 		
-		@Override
+		
 		public void start(Stage topLevelStage) throws Exception {
 			int spilTilstand = 0;
 			game = new MinesweeperGame(10, 10, 10);
@@ -40,7 +41,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 			for (int i =0; i<10; i++) {
 				for (int j =0; j<10; j++) {
 					MinesweeperButton button = new MinesweeperButton(j,i);
-					button.setText("" +j +", "+ i);
+					button.setText("");
 					button.setOnAction(this);
 					
 					grid.add(button, j, i);
@@ -85,12 +86,15 @@ public class startMinesweeper extends Application implements EventHandler<Action
 				
 			MinesweeperButton button =(MinesweeperButton)event.getSource();
 			System.out.println(button.getPos());
+			game.getPos(button.getPos());
 			grid.getChildren().remove(event.getSource());
+			Button button1 = new Button(""+game.knownGameState[button.getPos().x][button.getPos().y]);
+			grid.add(button1,(int) button.getPos().x,(int) button.getPos().y);
 			gameState(game);
 			System.out.println();
 			showGameState(game);
 			spilTilstand=game.testConditions(button.getPos());
-			game.getPos(button.getPos());
+			
 			if (spilTilstand == 8) {
 				victory();
 			}
