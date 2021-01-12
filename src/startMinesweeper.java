@@ -40,8 +40,9 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		
 	public void start(Stage topLevelStage) throws Exception {
 		int spilTilstand = 0;
-		model= new MinesweeperModel();
-		controller = new MinesweeperController(model);
+		model = new MinesweeperModel();
+		view = new MinesweeperView();
+		controller = new MinesweeperController(model, view);
 		topLevelStage.setTitle("This is a title.");
 		StackPane layout = new StackPane();
 		

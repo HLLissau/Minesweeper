@@ -16,54 +16,26 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class MinesweeperView implements EventHandler<ActionEvent> {
+public class MinesweeperView {
 	MinesweeperController controller;
 	GridPane grid;
 	int x,y;
 	
-	public MinesweeperView(int x, int y,MinesweeperController controller) {
-		this.x = x;
-		this.y = y;
-		controller = this.controller;
+	public MinesweeperView() {
+
 	}
 	
-	
-	public void loadstage(Stage topLevelStage) {
-		int spilTilstand = 0;
-		topLevelStage.setTitle("Minesweeper");
-		StackPane layout = new StackPane();
-		grid = new GridPane();
-		for (int i =0; i<this.y; i++) {
-			for (int j =0; j<this.x; j++) {
-				MinesweeperButton button = new MinesweeperButton(j,i);
-				button.setText("");
-				button.setOnAction(this);
-				grid.add(button, j, i);
-			}
-		}
-				
-		layout.getChildren().add(grid);
+	public Image[] pictures() {
+		Image[] pictures = new Image[10];
 		
-		
-		System.out.println("End of start method");
-		
-		Scene scene = new Scene(layout, 350,300);
-		topLevelStage.setScene(scene);
-		topLevelStage.show();
-		
-	
-	}
-	
-	public void handle(ActionEvent event) {
+		for(int i = 1; i<10; i++) {
+			String name = i + ".png";
+			pictures [i] = new Image(name);
 			
-		MinesweeperButton button =(MinesweeperButton)event.getSource();
-		System.out.println(button.getPos());
-		grid.getChildren().remove(event.getSource());
-		int cell = controller.getNext(button.getPos());
-		Button text = new Button(""+ cell);
-		grid.add(new ImageView(pictures()[9]), button.getPos().x, button.getPos().y);
-		
-		
+		}
+		return pictures;	
 	}
+
+
 	
 }

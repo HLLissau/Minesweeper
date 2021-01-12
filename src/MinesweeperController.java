@@ -8,8 +8,10 @@ import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
 	MinesweeperModel model;
+	MinesweeperView view;
 	int gameState;
-	public MinesweeperController(MinesweeperModel model) {
+	public MinesweeperController(MinesweeperModel model, MinesweeperView view) {
+		this.view = view;
 		this.model = model;
 	}
 	
@@ -31,19 +33,11 @@ public class MinesweeperController {
 		System.out.println(button.getPos());
 		grid.getChildren().remove(button);
 		int cell = getNext(button.getPos());
-		grid.add(new ImageView(pictures()[cell]), button.getPos().x, button.getPos().y);
+		grid.add(new ImageView(view.pictures()[cell]), button.getPos().x, button.getPos().y);
 		//checkneighbours(grid,button.getPos(),text);
 	}
-	public Image[] pictures() {
-		Image[] pictures = new Image[10];
-		
-		for(int i = 1; i<10; i++) {
-			String name = i + ".png";
-			pictures [i] = new Image(name);
-			
-		}
-		return pictures;	
-	}
+
+}
 
 	/*
 	public void checkneighbours(GridPane grid,Point position,int number) {
@@ -66,5 +60,5 @@ public class MinesweeperController {
 		}
 	}
 	*/
-}
+
 	
