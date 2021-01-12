@@ -94,8 +94,8 @@ public class startMinesweeper extends Application implements EventHandler<Action
 	    return i;
 	}
 	public void handle(ActionEvent event) {
-		controller.buttonPressed(grid, (MinesweeperButton)event.getSource() );
-	
+		controller.buttonPressed(grid, (MinesweeperButton)event.getSource() );	
+		
 	}
 	
 }

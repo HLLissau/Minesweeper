@@ -28,15 +28,17 @@ public class MinesweeperController {
 	return cell;	
 	
 	}
-	public void buttonPressed(GridPane grid, MinesweeperButton mbutton) {
+	public int buttonPressed(GridPane grid, MinesweeperButton mbutton) {
 		MinesweeperButton button =mbutton;
 		System.out.println(button.getPos());
 		grid.getChildren().remove(button);
 		int cell = getNext(button.getPos());
 		grid.add(new ImageView(view.pictures()[cell]), button.getPos().x, button.getPos().y);
 		//checkneighbours(grid,button.getPos(),text);
+		int gameState = model.testConditions(button.getPos());
+		return gameState;
 	}
-
+	
 }
 
 	/*
