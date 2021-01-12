@@ -2,23 +2,24 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class MinesweeperView extends Application implements EventHandler<ActionEvent> {
-	int spilTilstand;
+public class MinesweeperView implements EventHandler<ActionEvent> {
+	MinesweeperController controller;
 	GridPane grid;
-	int x, y;
+	int x,y;
 	
-	public MinesweeperView(int x, int y) {
+	public MinesweeperView(int x, int y,MinesweeperController controller) {
 		this.x = x;
 		this.y = y;
-		launch();
+		controller = this.controller;
 	}
 	
-	@Override
-	public void start(Stage topLevelStage) throws Exception {
+	
+	public void loadstage(Stage topLevelStage) {
 		int spilTilstand = 0;
 		topLevelStage.setTitle("This is a title.");
 		StackPane layout = new StackPane();
@@ -50,17 +51,11 @@ public class MinesweeperView extends Application implements EventHandler<ActionE
 		MinesweeperButton button =(MinesweeperButton)event.getSource();
 		System.out.println(button.getPos());
 		grid.getChildren().remove(event.getSource());
-		gameState(game);
-		System.out.println();
-		showGameState(game);
-		spilTilstand=game.testConditions(button.getPos());
-		game.getPos(button.getPos());
-		if (spilTilstand == 8) {
-			victory();
-		}
-		if (spilTilstand == 9) {
-			defeat();
-		}
+		int cell = controller.getNext(button.getPos());
+		Button text = new Button(""+ cell);
+		grid.add(text, button.getPos().x, button.getPos().y);
+		
+		
 	}
 	
 }

@@ -1,6 +1,6 @@
 import java.awt.Point;
 import java.util.ArrayList;
-public class MinesweeperGame{
+public class MinesweeperModel{
 	
 	public int[][] knownGameState;
 	private int[][] gameState;
@@ -12,7 +12,7 @@ public class MinesweeperGame{
 	private int antalBomber;
 	private ArrayList<Point> ledigefelter;
 	
-	public MinesweeperGame() {
+	public MinesweeperModel() {
 		this.knownGameState = new int[10][10] ;
 		this.gameState = new int[10][10] ;
 		this.sizex=10;
@@ -22,7 +22,7 @@ public class MinesweeperGame{
 		firstClicked=1;
 	}
 	
-	public MinesweeperGame(int sizex, int sizey, int bombAmount) {
+	public MinesweeperModel(int sizex, int sizey, int bombAmount) {
 		this.knownGameState = new int[sizex][sizey] ;
 		this.gameState = new int[sizex][sizey];
 		this.sizex=sizex;
@@ -34,7 +34,7 @@ public class MinesweeperGame{
 	
  
 	// transfer given [x,y] set from gamestate to knowngamestate.
-	public int[][] getPos( Point nextPos) {
+	public int getPos( Point nextPos) {
 		if (firstClicked ==1) {
 			firstClicked =0;
 			randomBombGenerator(bombAmount, nextPos );
@@ -44,9 +44,9 @@ public class MinesweeperGame{
 		
 		this.knownGameState[nextPos.x][nextPos.y]=this.gameState[nextPos.x][nextPos.y];
 		vendteFelter += 1;
+		int cell = this.knownGameState[nextPos.x][nextPos.y];
 		
-		
-		return knownGameState;
+		return cell;
 	}
 	// genererer alle felter til 0, herefter indsættes bomber
 	public void randomBombGenerator(int antalBomber, Point firstClicked) {
