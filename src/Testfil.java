@@ -15,6 +15,7 @@ public class Testfil extends Application implements EventHandler<ActionEvent> {
 	
 	MinesweeperGame game;
 	int spilTilstand;
+	GridPane grid;
 	// Main program file. Contains main and controllor
 	
 		
@@ -35,11 +36,11 @@ public class Testfil extends Application implements EventHandler<ActionEvent> {
 			game = new MinesweeperGame(10, 10, 10);
 			topLevelStage.setTitle("This is a title.");
 			StackPane layout = new StackPane();
-			GridPane grid = new GridPane();
+			grid = new GridPane();
 			for (int i =0; i<10; i++) {
 				for (int j =0; j<10; j++) {
 					MinesweeperButton button = new MinesweeperButton(j,i);
-					button.setText("" +j +", "+ i);
+					button.setText("");
 					button.setOnAction(this);
 					
 					grid.add(button, j, i);
@@ -83,11 +84,13 @@ public class Testfil extends Application implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
 				
 			MinesweeperButton button =(MinesweeperButton)event.getSource();
+			spilTilstand=game.testConditions(button.getPos());
+			grid.getChildren().remove(event.getSource());
 			System.out.println(button.getPos());
 			gameState(game);
 			System.out.println();
 			showGameState(game);
-			spilTilstand=game.testConditions(button.getPos());
+			
 			game.getPos(button.getPos());
 			if (spilTilstand == 8) {
 				victory();
