@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-public class startMinesweeper extends Application implements EventHandler<ActionEvent> {
+public class Testfil extends Application implements EventHandler<ActionEvent> {
 	
 	MinesweeperGame game;
 	int spilTilstand;
