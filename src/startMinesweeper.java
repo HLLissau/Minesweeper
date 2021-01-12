@@ -40,7 +40,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 			for (int i =0; i<10; i++) {
 				for (int j =0; j<10; j++) {
 					MinesweeperButton button = new MinesweeperButton(j,i);
-					button.setText("" +j +", "+ i);
+					button.setText("");
 					button.setOnAction(this);
 					
 					grid.add(button, j, i);
