@@ -99,7 +99,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 
 	
 		
-		
+		//test of push
 		
 		public static void showGameState(MinesweeperGame game) {
 			for (int i=game.getSizey();i>0; i--) {
