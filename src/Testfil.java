@@ -10,15 +10,18 @@ public class Testfil extends Application {
 	MinesweeperView view;
 	
 	
-	public void main(String args[]) {
-		this.model = new MinesweeperModel(10,10,10);
-		this.controller = new MinesweeperController(model);
-		this.view = new MinesweeperView(10,10,controller);
+	public static void main(String args[]) {
+//		this.model = new MinesweeperModel(10,10,10);
+//		this.controller = new MinesweeperController(model);
+//		this.view = new MinesweeperView(10,10,controller);
 		
-		launch();
+		launch(args);
 	}
 	
 	public void start(Stage topLevelStage) throws Exception {
+		this.model = new MinesweeperModel(10,10,10);
+		this.controller = new MinesweeperController(model);
+		this.view = new MinesweeperView(10,10,controller);
 		view.loadstage(topLevelStage);
 	}
 	
