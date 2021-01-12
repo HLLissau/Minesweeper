@@ -19,6 +19,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 	
 	MinesweeperModel model;
 	int spilTilstand;
+	int x,y;
 	GridPane grid;
 	MinesweeperController controller;
 	MinesweeperView view;
@@ -40,6 +41,8 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		
 	public void start(Stage topLevelStage) throws Exception {
 		int spilTilstand = 0;
+		x = 20;
+		y = 20;
 		model = new MinesweeperModel();
 		view = new MinesweeperView();
 		controller = new MinesweeperController(model, view);
@@ -48,8 +51,8 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		
 		
 		grid = new GridPane();
-		for (int i =0; i<10; i++) {
-			for (int j =0; j<10; j++) {
+		for (int i =0; i<y; i++) {
+			for (int j =0; j<x; j++) {
 				MinesweeperButton button = new MinesweeperButton(j,i);
 				button.setText("  ");
 				button.setOnAction(this);
@@ -63,7 +66,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		
 		System.out.println("End of start method");
 		
-		Scene scene = new Scene(layout, 350,300);
+		Scene scene = new Scene(layout, 23*x, 25*y);
 		topLevelStage.setScene(scene);
 		topLevelStage.show();
 	
