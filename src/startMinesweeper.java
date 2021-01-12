@@ -15,6 +15,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 	
 	MinesweeperGame game;
 	int spilTilstand;
+	GridPane grid;
 	// Main program file. Contains main and controllor
 	
 		
@@ -35,7 +36,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 			game = new MinesweeperGame(10, 10, 10);
 			topLevelStage.setTitle("This is a title.");
 			StackPane layout = new StackPane();
-			GridPane grid = new GridPane();
+			grid = new GridPane();
 			for (int i =0; i<10; i++) {
 				for (int j =0; j<10; j++) {
 					MinesweeperButton button = new MinesweeperButton(j,i);
@@ -84,6 +85,7 @@ public class startMinesweeper extends Application implements EventHandler<Action
 				
 			MinesweeperButton button =(MinesweeperButton)event.getSource();
 			System.out.println(button.getPos());
+			grid.getChildren().remove(event.getSource());
 			gameState(game);
 			System.out.println();
 			showGameState(game);
