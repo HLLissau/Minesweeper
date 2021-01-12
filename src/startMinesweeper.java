@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,14 +17,16 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-public class startMinesweeper extends Application implements EventHandler<ActionEvent> {
+public class startMinesweeper extends Application {
 	
 	MinesweeperModel model;
+	
 	int spilTilstand;
 	int x,y,bombs;
 	GridPane grid;
 	MinesweeperController controller;
 	MinesweeperView view;
+	ObservableList<Node> childrens;
 	// Main program file. Contains main and controllor
 	
 		
@@ -43,29 +47,20 @@ public class startMinesweeper extends Application implements EventHandler<Action
 		int spilTilstand = 0;
 		x = 10;
 		y = 10;
-		bombs = 99;
+		bombs = 10;
 		model = new MinesweeperModel(x,y,bombs);
 		view = new MinesweeperView();
 		controller = new MinesweeperController(model, view);
 		topLevelStage.setTitle("This is a title.");
 		StackPane layout = new StackPane();
 		
+		grid = controller.getGrid();
 		
-		grid = new GridPane();
-		for (int i =0; i<y; i++) {
-			for (int j =0; j<x; j++) {
-				MinesweeperButton button = new MinesweeperButton(j,i);
-				button.setText("  ");
-				button.setOnAction(this);
-				
-				grid.add(button, j, i);
-			}
-		}
 				
 		layout.getChildren().add(grid);
 		
-		
-		System.out.println("End of start method");
+		childrens = grid.getChildren();
+		System.out.println("End of start method" + childrens);
 		
 		Scene scene = new Scene(layout, 23*x, 25*y);
 		topLevelStage.setScene(scene);
@@ -93,11 +88,6 @@ public class startMinesweeper extends Application implements EventHandler<Action
 	    }
 	    return i;
 	}
-	public void handle(ActionEvent event) {
-		controller.buttonPressed(grid, (MinesweeperButton)event.getSource() );	
-		
-	}
-	
 }
 		
 		
