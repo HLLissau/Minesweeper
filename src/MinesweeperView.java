@@ -15,16 +15,17 @@ public class MinesweeperView {
 	ObservableList<Node> childrens;
 	Stage stage;
 	String title;
+	Image[] images;
 	int x,y;
 	
 	
 	public MinesweeperView() {
-
+		setPictures();
 	}
 	public MinesweeperView(int x, int y) {
 		this.x = x;
 		this.y = y;
-		
+		setPictures();
 				
 	}
 	public void SetOptions(Stage topLevelStage, MinesweeperController controller, int x, int y, String title) {
@@ -34,16 +35,21 @@ public class MinesweeperView {
 		this.controller = controller;
 		this.title = title;
 	}
-	public Image[] pictures() {
-		Image[] pictures = new Image[10];
+	public void setPictures() {
+		this.images = new Image[10];
 		
 		for(int i = 0; i<10; i++) {
 			String name = i + ".png";
-			pictures [i] = new Image(name);
+			images[i] = new Image(name);
 			
 		}
-		return pictures;	
 	}
+
+	public Image getPicture(int x) {
+		return images[x];
+	}
+	
+	
 	
 	public Stage basicGame() {
 		
@@ -56,7 +62,7 @@ public class MinesweeperView {
 				
 		layout.getChildren().add(grid);
 		
-		childrens = grid.getChildren();
+		//childrens = grid.getChildren();
 		//System.out.println("End of start method" + childrens);
 		
 		Scene scene = new Scene(layout, 23*this.x, 25*this.y);

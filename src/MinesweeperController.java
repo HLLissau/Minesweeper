@@ -33,7 +33,6 @@ public class MinesweeperController {
 	
 	public void checkGameState(int gamestate) {
 		this.gameState=gamestate;
-		System.out.println(gamestate);
 		if (gameState == 8) {
 			view.victory();
 		}
@@ -48,8 +47,7 @@ public class MinesweeperController {
 		//System.out.println(button.getPos());
 		grid.getChildren().remove(mbutton);
 		int cell = getNext(mbutton.getPos());
-		ImageView image = new ImageView(view.pictures()[cell]);
-		grid.add(image, mbutton.getPos().x, mbutton.getPos().y);
+		grid.add(new ImageView(view.getPicture(cell)), mbutton.getPos().x, mbutton.getPos().y);
 		
 		//int gameState = model.testConditions(button.getPos());
 		
@@ -61,8 +59,8 @@ public class MinesweeperController {
 				buttonPressed(temp.remove(0));
 			}
 		}
-		
-		checkGameState(cell);
+		System.out.println(childrens.size());
+		checkGameState(childrens.size());
 		
 		
 		return cell;
