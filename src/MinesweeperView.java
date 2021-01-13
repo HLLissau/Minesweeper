@@ -113,7 +113,7 @@ public class MinesweeperView {
 		return gameOverScreen;
 	}
 	public void stopGame() {
-		for (int i =0; i< (100-controller.model.getAntalVendteFelter()); i++) {
+		for (int i =0; i< ((controller.model.getSizex()*controller.model.getSizey())-controller.model.getAntalVendteFelter()); i++) {
 			MinesweeperButton temp =(MinesweeperButton) controller.childrens.get(i);
 			temp.setOnAction(null);
 		}
