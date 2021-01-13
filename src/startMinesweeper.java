@@ -45,15 +45,15 @@ public class startMinesweeper extends Application {
 		
 	public void start(Stage topLevelStage) throws Exception {
 		int spilTilstand = 0;
-		x = 20;
-		y = 20;
+		x = 10;
+		y = 10;
 		bombs = 10;
 		model = new MinesweeperModel(x,y,bombs);
 		view = new MinesweeperView();
 		controller = new MinesweeperController(model, view);
 		
 		topLevelStage = view.basicGame(topLevelStage, controller,x,y);
-		topLevelStage = view.gameOver();
+		topLevelStage.show();
 	}
 	
 	public static Point getNextInput(MinesweeperModel game, Scanner input) {

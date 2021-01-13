@@ -47,7 +47,7 @@ public class MinesweeperView {
 		
 		Scene scene = new Scene(layout, 23*this.x, 25*this.y);
 		topLevelStage.setScene(scene);
-		topLevelStage.show();
+		//topLevelStage.show();
 		return topLevelStage;
 	}
 	

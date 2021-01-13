@@ -25,10 +25,10 @@ public class MinesweeperController {
 		int cell = model.getPos(updatepoint);
 		gameState=model.testConditions(updatepoint);
 		if (gameState == 8) {
-			//victory();
+			//view.gameOver();
 		}
 		if (gameState == 9) {
-			//defeat();
+			view.gameOver();
 		}
 	return cell;	
 	
