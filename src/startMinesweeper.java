@@ -21,14 +21,6 @@ public class startMinesweeper extends Application {
 	
 		launch(args);
 	}
-	public static void victory() {
-		System.out.println("Victory Royale!");
-	}
-	public static void defeat() {
-		System.out.println("Defeat screen :(");
-	}
-		
-		
 		
 	public void start(Stage topLevelStage) throws Exception {
 		x = 10;
