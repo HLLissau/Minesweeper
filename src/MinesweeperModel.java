@@ -102,7 +102,7 @@ public class MinesweeperModel{
 			this.endCondition =9;
 		} else if (victoryCondition()) {
 			this.endCondition =8;
-		} 
+		}
 	}
 
 	//The remaining functions are used to get game parameters
