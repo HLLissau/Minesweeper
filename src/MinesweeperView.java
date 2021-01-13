@@ -52,7 +52,6 @@ public class MinesweeperView {
 	
 	
 	public Stage basicGame() {
-		
 		this.stage.setTitle(title);
 		StackPane layout = new StackPane();
 		

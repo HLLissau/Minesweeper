@@ -16,6 +16,7 @@ public class MinesweeperController {
 	ObservableList<Node> childrens;
 	GridPane grid;
 	int gameState;
+	int antalKnapper;
 	
 	
 	
@@ -31,8 +32,10 @@ public class MinesweeperController {
 	return cell;	
 	}
 	
-	public void checkGameState(int gamestate) {
-		this.gameState=gamestate;
+	public void checkGameState(Point point) {
+		
+		this.gameState=model.testConditions(point);
+		System.out.println(this.gameState);
 		if (gameState == 8) {
 			view.victory();
 		}
@@ -52,6 +55,7 @@ public class MinesweeperController {
 		//int gameState = model.testConditions(button.getPos());
 		
 		//childrens = grid.getChildren();
+		/*
 		if (cell==0) {
 			ArrayList<MinesweeperButton> temp = mbutton.getneighbours();
 			while (temp.size()>0) {
@@ -59,8 +63,8 @@ public class MinesweeperController {
 				buttonPressed(temp.remove(0));
 			}
 		}
-		System.out.println(childrens.size());
-		checkGameState(childrens.size());
+		*/
+		checkGameState(mbutton.getPos());
 		
 		
 		return cell;
@@ -68,12 +72,13 @@ public class MinesweeperController {
 	
 	public GridPane getGrid() {
 		grid = new GridPane();
+		this.antalKnapper=0;
 		for (int i =0; i<model.getSizey(); i++) {
 			for (int j =0; j<model.getSizex(); j++) {
 				MinesweeperButton button = new MinesweeperButton(j,i);
 				button.setText("  ");
 				button.setOnAction(e->buttonPressed(button));
-				
+				this.antalKnapper ++;
 				grid.add(button, j, i);
 			}
 		}
@@ -109,8 +114,9 @@ public class MinesweeperController {
 				
 	}
 	public void gotoNewGame(Stage thisStage) {
-		
+		model = new MinesweeperModel(model.getSizex(),model.getSizey(),model.getBombAmount() );
 		view.basicGame();
+		
 		thisStage.close();
 		}
 	

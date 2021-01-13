@@ -48,8 +48,9 @@ public class startMinesweeper extends Application {
 		x = 10;
 		y = 10;
 		bombs = 10;
-		model = new MinesweeperModel(x,y,bombs);
+		
 		view = new MinesweeperView();
+		model = new MinesweeperModel(x,y,bombs);
 		controller = new MinesweeperController(model, view);
 		
 		view.SetOptions(topLevelStage, controller, x, y, "basicgame");
