@@ -57,27 +57,6 @@ public class startMinesweeper extends Application {
 		topLevelStage = view.basicGame();
 		topLevelStage.show();
 	}
-	
-	public static Point getNextInput(MinesweeperModel game, Scanner input) {
-		System.out.println("Enter x and y coordinates");
-		Point nextInput = new Point(getUserInt(input,0,game.getSizex()-1), getUserInt(input,0,game.getSizey()-1)); 
-		System.out.println("You entered: x=" + nextInput.x + ", y=" + nextInput.y);
-		return nextInput;
-		}
-	//check a given int input is in range between min and max
-	public static int getUserInt(Scanner f, int min, int max) {
-		int i = 0;
-	    while (true) {
-		    	while (!f.hasNextInt()) {
-	                f.next();
-	        }
-	        i = f.nextInt();
-	        if (min <= i && i <= max) {
-	        	break;
-	        }
-	    }
-	    return i;
-	}
 }
 		
 		

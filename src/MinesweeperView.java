@@ -72,8 +72,8 @@ public class MinesweeperView {
 	
 	
 	public Stage gameOver() {
-		System.out.println("Test");
 		
+		stopGame();
 		Stage gameOverScreen = new Stage();
 		gameOverScreen.setTitle("Game Over");
 		
@@ -85,11 +85,11 @@ public class MinesweeperView {
 		//Layout
 		StackPane layout = new StackPane();
 		layout.getChildren().add(button);
-		
 		Scene scene= new Scene(layout,200,150);
 		gameOverScreen.setScene(scene);
 		gameOverScreen.show();
-		stopGame();
+		
+		
 		return gameOverScreen;
 	}
 	public Stage victory() {
@@ -113,8 +113,8 @@ public class MinesweeperView {
 		return gameOverScreen;
 	}
 	public void stopGame() {
-		for (int i =0; i< childrens.size();i++) {
-			MinesweeperButton temp =(MinesweeperButton) childrens.get(i);
+		for (int i =0; i< (100-controller.model.getAntalVendteFelter()); i++) {
+			MinesweeperButton temp =(MinesweeperButton) controller.childrens.get(i);
 			temp.setOnAction(null);
 		}
 	}

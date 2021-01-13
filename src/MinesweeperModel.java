@@ -81,6 +81,9 @@ public class MinesweeperModel{
 	public int getBombAmount() {
 		return this.antalBomber;
 	}
+	public int getAntalVendteFelter() {
+		return this.vendteFelter;
+	}
 	public boolean victoryCondition() {
 		return ((this.sizex*this.sizey)-this.antalBomber == this.vendteFelter);
 	}
