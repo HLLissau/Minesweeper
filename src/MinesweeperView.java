@@ -39,7 +39,7 @@ public class MinesweeperView {
 		this.images = new Image[10];
 		
 		for(int i = 0; i<10; i++) {
-			String name = i + ".png";
+			String name ="images\\" + i + ".png";
 			images[i] = new Image(name);
 			
 		}
