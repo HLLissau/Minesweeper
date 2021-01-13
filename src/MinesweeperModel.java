@@ -44,6 +44,7 @@ public class MinesweeperModel{
 		clickedFields += 1;
 		int cell = this.knownGameState[nextPos.x][nextPos.y];
 		
+		testConditions(nextPos);
 		return cell;
 	}
 	
