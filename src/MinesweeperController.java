@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class MinesweeperController {
 	MinesweeperModel model;
@@ -28,7 +29,7 @@ public class MinesweeperController {
 			//view.gameOver();
 		}
 		if (gameState == 9) {
-			view.gameOver();
+			view.victory();
 		}
 	return cell;	
 	
@@ -101,6 +102,10 @@ public class MinesweeperController {
 		}
 				
 	}
+	public void gotoNewGame(Stage thisStage) {
+		view.basicGame();
+		thisStage.close();
+		}
 	
 }	
 

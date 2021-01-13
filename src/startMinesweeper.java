@@ -52,7 +52,8 @@ public class startMinesweeper extends Application {
 		view = new MinesweeperView();
 		controller = new MinesweeperController(model, view);
 		
-		topLevelStage = view.basicGame(topLevelStage, controller,x,y);
+		view.SetOptions(topLevelStage, controller, x, y, "basicgame");
+		topLevelStage = view.basicGame();
 		topLevelStage.show();
 	}
 	
