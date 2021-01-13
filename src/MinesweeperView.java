@@ -28,8 +28,9 @@ public class MinesweeperView {
 		return pictures;	
 	}
 	
-	public Stage basicGame(Stage topLevelStage, MinesweeperController controller) {
-		
+	public Stage basicGame(Stage topLevelStage, MinesweeperController controller, int x, int y) {
+		this.x = x;
+		this.y = y;
 		topLevelStage.setTitle("This is a title.");
 		StackPane layout = new StackPane();
 		
@@ -42,7 +43,7 @@ public class MinesweeperView {
 		childrens = grid.getChildren();
 		System.out.println("End of start method" + childrens);
 		
-		Scene scene = new Scene(layout, 23*x, 25*y);
+		Scene scene = new Scene(layout, 23*this.x, 25*this.y);
 		topLevelStage.setScene(scene);
 		topLevelStage.show();
 		return topLevelStage;

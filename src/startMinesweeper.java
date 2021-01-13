@@ -52,7 +52,7 @@ public class startMinesweeper extends Application {
 		view = new MinesweeperView();
 		controller = new MinesweeperController(model, view);
 		
-		topLevelStage = view.basicGame(topLevelStage, controller);
+		topLevelStage = view.basicGame(topLevelStage, controller,x,y);
 		
 	}
 	
