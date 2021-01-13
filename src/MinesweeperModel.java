@@ -11,7 +11,7 @@ public class MinesweeperModel{
 	private int isGameStarted;
 	private int clickedFields;
 	private ArrayList<Point> availableFields;
-	int endCondition;
+	private int endCondition;
 	
 	/*
 	 * Creates a standard (n x m) game with x bombs
@@ -97,7 +97,13 @@ public class MinesweeperModel{
 			}
 		}
 	}
-	
+	public void testConditions(Point nextTile) {
+		if (defeatCondition(nextTile.x, nextTile.y)) {
+			this.endCondition =9;
+		} else if (victoryCondition()) {
+			this.endCondition =8;
+		} 
+	}
 
 	//The remaining functions are used to get game parameters
 	public int getSizex() {
@@ -128,14 +134,8 @@ public class MinesweeperModel{
 	private boolean defeatCondition(int x, int y) {
 		return gameState[x][y] == 9;
 	}
-	
-	public int testConditions(Point nextTile) {
-		if (defeatCondition(nextTile.x, nextTile.y)) {
-			return 9;
-		}
-		if (victoryCondition()) {
-			return 8;
-		}
-		return 0;
+	public int getEndCondition() {
+		return this.endCondition;
 	}
+	
 }

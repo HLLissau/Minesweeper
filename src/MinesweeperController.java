@@ -108,11 +108,11 @@ public class MinesweeperController {
 	 * Input: Minesweeper controller and point.
 	 */
 	public void checkEndCondition(MinesweeperModel minesweeperModel, Point point) {
-		minesweeperModel.endCondition = minesweeperModel.testConditions(point);
-		if (minesweeperModel.endCondition == 8) {
+		int condition =model.getEndCondition();
+		if (condition == 8) {
 			view.victory();
 		}
-		if (minesweeperModel.endCondition == 9) {
+		if (condition == 9) {
 			view.gameOver();
 		}
 	
