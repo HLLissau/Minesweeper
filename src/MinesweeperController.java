@@ -28,7 +28,7 @@ public class MinesweeperController {
 			//view.gameOver();
 		}
 		if (gameState == 9) {
-			view.gameOver();
+			view.victory();
 		}
 	return cell;	
 	
