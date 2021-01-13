@@ -1,32 +1,22 @@
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
-
 public class MinesweeperView {
 	MinesweeperController controller;
-	GridPane grid;
-	ObservableList<Node> childrens;
 	Stage stage;
 	String title;
 	Image[] images;
 	int x,y;
 	
-	
+	//MinesweeperView initiates constructor to make view
 	public MinesweeperView() {
 		setPictures();
 	}
-	public MinesweeperView(int x, int y) {
-		this.x = x;
-		this.y = y;
-		setPictures();
-				
-	}
+	
+	//Set game parameters
 	public void SetOptions(Stage topLevelStage, MinesweeperController controller, int x, int y, String title) {
 		this.x = x;
 		this.y = y;
@@ -34,6 +24,8 @@ public class MinesweeperView {
 		this.controller = controller;
 		this.title = title;
 	}
+	
+	//Load pictures to images array
 	public void setPictures() {
 		this.images = new Image[10];
 		
@@ -43,27 +35,35 @@ public class MinesweeperView {
 			
 		}
 	}
-
+	
+	/*
+	 * Load pictures from view to game. If out of bounds, last index is returned.
+	 * Input: x (array index)
+	 * Output: Image from array index (x)
+	 */
 	public Image getPicture(int x) {
+		if (!(x<this.images.length)||(x<0)) {
+			x = this.images.length-1;
+		}
+		
 		return images[x];
 	}
 	
 	
-	
+	//Sets the stage
 	public Stage basicGame() {
 		this.stage.setTitle(title);
 		StackPane layout = new StackPane();
-		grid = controller.getGrid();
-		layout.getChildren().add(grid);
+		layout.getChildren().add(controller.getGrid());
 		Scene scene = new Scene(layout, 23*this.x, 25*this.y);
 		stage.setScene(scene);
 		return stage;
 	}
 	
-	
+	//Open game over window
 	public Stage gameOver() {
 		
-		stopGame();
+		controller.clearButtonAction();
 		Stage gameOverScreen = new Stage();
 		gameOverScreen.setTitle("Game Over");
 		
@@ -82,6 +82,8 @@ public class MinesweeperView {
 		
 		return gameOverScreen;
 	}
+	
+	//Open victory window
 	public Stage victory() {
 		
 		Stage gameOverScreen = new Stage();
@@ -99,14 +101,7 @@ public class MinesweeperView {
 		Scene scene= new Scene(layout,200,150);
 		gameOverScreen.setScene(scene);
 		gameOverScreen.show();
-		stopGame();
+		controller.clearButtonAction();
 		return gameOverScreen;
 	}
-	public void stopGame() {
-		for (int i =0; i< ((controller.model.getSizex()*controller.model.getSizey())-controller.model.getAmountClickedFields()); i++) {
-			MinesweeperButton temp =(MinesweeperButton) controller.childrens.get(i);
-			temp.setOnAction(null);
-		}
-	}
-	
 }

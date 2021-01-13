@@ -8,44 +8,40 @@ import javafx.stage.Stage;
 public class MinesweeperController {
 	MinesweeperModel model;
 	MinesweeperView view;
-	ObservableList<Node> childrens;
+	//children is an array which contains a map of buttons and images for JavaFX
+	ObservableList<Node> children;
 	GridPane grid;
-	int gameState;
-	int buttonAmount;
 	
-	
-	
+	//Import model and view to controller through constructor
 	public MinesweeperController(MinesweeperModel model, MinesweeperView view) {
 		this.view = view;
 		this.model = model;
 	}
 	
+	/*
+	 *Calls model for change in position.
+	 *Input: point from view.
+	 *Output: number of neighbors (9 = bombs).
+	 */
 	public int getNext(Point updatepoint) {
 		int cell = model.getPos(updatepoint);
 		return cell;	
 	}
 	
-	public void checkGameState(Point point) {
-		
-		this.gameState=model.testConditions(point);
-		System.out.println(this.gameState);
-		if (gameState == 8) {
-			view.victory();
-		}
-		if (gameState == 9) {
-			view.gameOver();
-		}
-	
-	}
-	public int buttonPressed(MinesweeperButton pressedButton) {
+	/*
+	 *Program is informed which button the user has pressed. Checks endCondition to see if game is still operational.
+	 *When button is pressed, function removes button and inserts image.
+	 *Input: MinesweeperButton.
+	 */
+	public void buttonPressed(MinesweeperButton pressedButton) {
 		grid.getChildren().remove(pressedButton);
 		int cell = getNext(pressedButton.getPos());
 		grid.add(new ImageView(view.getPicture(cell)), pressedButton.getPos().x, pressedButton.getPos().y);
 		
-		//int gameState = model.testConditions(button.getPos());
-		
-		//childrens = grid.getChildren();
 		/*
+		int gameState = model.testConditions(button.getPos());
+		childrens = grid.getChildren();
+		
 		if (cell==0) {
 			ArrayList<MinesweeperButton> temp = pressedButton.getneighbours();
 			while (temp.size()>0) {
@@ -54,41 +50,73 @@ public class MinesweeperController {
 			}
 		}
 		*/
-		checkGameState(pressedButton.getPos());
+		checkEndCondition(model, pressedButton.getPos());
 		
-		
-		return cell;
 	}
 	
+	/*
+	 * Creates GridPane and inserts buttons. Updates children, with list of buttons.
+	 * Output: New GridPane
+	 */
 	public GridPane getGrid() {
 		grid = new GridPane();
-		this.buttonAmount=0;
 		for (int i =0; i<model.getSizey(); i++) {
 			for (int j =0; j<model.getSizex(); j++) {
 				MinesweeperButton button = new MinesweeperButton(j,i);
 				button.setText("  ");
 				button.setOnAction(e->buttonPressed(button));
-				this.buttonAmount ++;
 				grid.add(button, j, i);
 			}
 		}
 		
-		childrens = grid.getChildren();
+		children = grid.getChildren();
 		
-		for (int i=0;i<childrens.size();i++) {
-			MinesweeperButton button = (MinesweeperButton) childrens.get(i);
-			button.setNeighbours(model.getSizex(),model.getSizey(),childrens);
+		for (int i=0;i<children.size();i++) {
+			MinesweeperButton button = (MinesweeperButton) children.get(i);
+			button.setNeighbours(model.getSizex(),model.getSizey(),children);
 		}
 		
 		return grid;
 	}
 	
+	/*
+	 * Ask model for new game. lose input stage. View loads new game.
+	 * Input: Stage
+	 */
 	public void gotoNewGame(Stage thisStage) {
 		model = new MinesweeperModel(model.getSizex(),model.getSizey(),model.getBombAmount() );
 		view.basicGame();
 		
 		thisStage.close();
 		}
+
+	/*
+	 * Remaining buttons are deactivated 
+	 */
+	public void clearButtonAction() {
+		for (int i =0; i< ((model.getSizex()*model.getSizey())-model.getAmountClickedFields()); i++) {
+			MinesweeperButton temp =(MinesweeperButton) children.get(i);
+			temp.setOnAction(null);
+		}
+	}
+
+	/*
+	 * Checks for victory and defeat condition.
+	 * If endCondition value is 8, the user has won.
+	 * If endCondition value is 9, the user has lost.
+	 * If endCondition value is 0, the game continues.
+	 * Input: Minesweeper controller and point.
+	 */
+	public void checkEndCondition(MinesweeperModel minesweeperModel, Point point) {
+		minesweeperModel.endCondition = minesweeperModel.testConditions(point);
+		if (minesweeperModel.endCondition == 8) {
+			view.victory();
+		}
+		if (minesweeperModel.endCondition == 9) {
+			view.gameOver();
+		}
+	
+	}
 	
 }	
 

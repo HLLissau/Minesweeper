@@ -1,24 +1,14 @@
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class startMinesweeper extends Application {
-	
-	MinesweeperModel model;
-	
-	int gameState;
 	int x,y,bombs;
-	GridPane grid;
-	MinesweeperController controller;
 	MinesweeperView view;
-	ObservableList<Node> childrens;
-	// Main program file. Contains main and controller
+	MinesweeperModel model;
+	MinesweeperController controller;
 	
-		
+	// Main program file. Contains launch for JavaFX
 	public static void main(String[] args) {
-	
 		launch(args);
 	}
 		
@@ -35,7 +25,4 @@ public class startMinesweeper extends Application {
 		topLevelStage = view.basicGame();
 		topLevelStage.show();
 	}
-}
-		
-		
-		
+}	
