@@ -48,6 +48,7 @@ public class MinesweeperController {
 		if (cell==0) {
 			ArrayList<MinesweeperButton> temp = mbutton.getneighbours();
 			while (temp.size()>0) {
+				
 				buttonPressed(temp.remove(0));
 			}
 		}

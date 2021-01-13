@@ -51,21 +51,9 @@ public class startMinesweeper extends Application {
 		model = new MinesweeperModel(x,y,bombs);
 		view = new MinesweeperView();
 		controller = new MinesweeperController(model, view);
-		topLevelStage.setTitle("This is a title.");
-		StackPane layout = new StackPane();
 		
-		grid = controller.getGrid();
+		topLevelStage = view.basicGame(topLevelStage, controller);
 		
-				
-		layout.getChildren().add(grid);
-		
-		childrens = grid.getChildren();
-		System.out.println("End of start method" + childrens);
-		
-		Scene scene = new Scene(layout, 23*x, 25*y);
-		topLevelStage.setScene(scene);
-		topLevelStage.show();
-	
 	}
 	
 	public static Point getNextInput(MinesweeperModel game, Scanner input) {

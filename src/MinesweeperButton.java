@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 public class MinesweeperButton extends Button{
 	private Point position;
 	private ArrayList<MinesweeperButton> neightbours;
+	
 	public MinesweeperButton() {
 		
 	}
