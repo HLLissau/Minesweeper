@@ -34,18 +34,19 @@ public class MinesweeperController {
 	
 	}
 	public int buttonPressed(MinesweeperButton mbutton) {
-		MinesweeperButton button =mbutton;
-		System.out.println(button.getPos());
-		grid.getChildren().remove(button);
-		int cell = getNext(button.getPos());
+		//MinesweeperButton button =mbutton;
+		
+		//System.out.println(button.getPos());
+		grid.getChildren().remove(mbutton);
+		int cell = getNext(mbutton.getPos());
 		ImageView image = new ImageView(view.pictures()[cell]);
-		grid.add(image, button.getPos().x, button.getPos().y);
+		grid.add(image, mbutton.getPos().x, mbutton.getPos().y);
 		
-		int gameState = model.testConditions(button.getPos());
+		//int gameState = model.testConditions(button.getPos());
 		
-		childrens = grid.getChildren();
+		//childrens = grid.getChildren();
 		if (cell==0) {
-			ArrayList<MinesweeperButton> temp = button.getneighbours();
+			ArrayList<MinesweeperButton> temp = mbutton.getneighbours();
 			while (temp.size()>0) {
 				buttonPressed(temp.remove(0));
 			}
