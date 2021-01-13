@@ -14,7 +14,7 @@ public class startMinesweeper extends Application {
 	MinesweeperController controller;
 	MinesweeperView view;
 	ObservableList<Node> childrens;
-	// Main program file. Contains main and controllor
+	// Main program file. Contains main and controller
 	
 		
 	public static void main(String[] args) {
