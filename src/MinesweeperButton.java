@@ -30,7 +30,6 @@ public class MinesweeperButton extends Button{
 				if (k!=0 || l!=0) {
 					if (this.position.y+k >= 0 && this.position.y+k < y && this.position.x+l >=0 && this.position.x+l < x) {
 						MinesweeperButton temp = (MinesweeperButton) list.get(((position.x+l)+((position.y+k)*x)));
-						//System.out.println("added button" + temp);
 						this.neightbours.add(temp);
 						
 					}

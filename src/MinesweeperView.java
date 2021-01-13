@@ -1,7 +1,6 @@
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -54,19 +53,10 @@ public class MinesweeperView {
 	public Stage basicGame() {
 		this.stage.setTitle(title);
 		StackPane layout = new StackPane();
-		
-		this.controller = controller;
 		grid = controller.getGrid();
-		
-				
 		layout.getChildren().add(grid);
-		
-		//childrens = grid.getChildren();
-		//System.out.println("End of start method" + childrens);
-		
 		Scene scene = new Scene(layout, 23*this.x, 25*this.y);
 		stage.setScene(scene);
-		//topLevelStage.show();
 		return stage;
 	}
 	
@@ -113,7 +103,7 @@ public class MinesweeperView {
 		return gameOverScreen;
 	}
 	public void stopGame() {
-		for (int i =0; i< ((controller.model.getSizex()*controller.model.getSizey())-controller.model.getAntalVendteFelter()); i++) {
+		for (int i =0; i< ((controller.model.getSizex()*controller.model.getSizey())-controller.model.getAmountClickedFields()); i++) {
 			MinesweeperButton temp =(MinesweeperButton) controller.childrens.get(i);
 			temp.setOnAction(null);
 		}

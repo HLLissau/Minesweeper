@@ -1,27 +1,14 @@
-import java.awt.Point;
-import java.awt.TextField;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
-import java.util.Scanner;
-
 import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 public class startMinesweeper extends Application {
 	
 	MinesweeperModel model;
 	
-	int spilTilstand;
+	int gameState;
 	int x,y,bombs;
 	GridPane grid;
 	MinesweeperController controller;
@@ -44,7 +31,6 @@ public class startMinesweeper extends Application {
 		
 		
 	public void start(Stage topLevelStage) throws Exception {
-		int spilTilstand = 0;
 		x = 10;
 		y = 10;
 		bombs = 10;
