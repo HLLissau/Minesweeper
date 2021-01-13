@@ -13,12 +13,27 @@ public class MinesweeperView {
 	MinesweeperController controller;
 	GridPane grid;
 	ObservableList<Node> childrens;
+	Stage stage;
+	String title;
 	int x,y;
+	
 	
 	public MinesweeperView() {
 
 	}
-	
+	public MinesweeperView(int x, int y) {
+		this.x = x;
+		this.y = y;
+		
+				
+	}
+	public void SetOptions(Stage topLevelStage, MinesweeperController controller, int x, int y, String title) {
+		this.x = x;
+		this.y = y;
+		this.stage = topLevelStage;
+		this.controller = controller;
+		this.title = title;
+	}
 	public Image[] pictures() {
 		Image[] pictures = new Image[10];
 		
@@ -30,10 +45,9 @@ public class MinesweeperView {
 		return pictures;	
 	}
 	
-	public Stage basicGame(Stage topLevelStage, MinesweeperController controller, int x, int y) {
-		this.x = x;
-		this.y = y;
-		topLevelStage.setTitle("Minesweeper(Basic).");
+	public Stage basicGame() {
+		
+		this.stage.setTitle(title);
 		StackPane layout = new StackPane();
 		
 		this.controller = controller;
@@ -46,10 +60,11 @@ public class MinesweeperView {
 		System.out.println("End of start method" + childrens);
 		
 		Scene scene = new Scene(layout, 23*this.x, 25*this.y);
-		topLevelStage.setScene(scene);
+		stage.setScene(scene);
 		//topLevelStage.show();
-		return topLevelStage;
+		return stage;
 	}
+	
 	
 	public Stage gameOver() {
 		Stage gameOverScreen = new Stage();
@@ -71,12 +86,12 @@ public class MinesweeperView {
 	}
 	public Stage victory() {
 		Stage gameOverScreen = new Stage();
-		gameOverScreen.setTitle("Game Over");
+		gameOverScreen.setTitle("Victory");
 		
 		//button
 		Button button = new Button();
 		button.setText("New game");
-		//button.setOnAction(e -> controller.gotoNewGame());
+		button.setOnAction(e -> controller.gotoNewGame(gameOverScreen));
 		
 		//Layout
 		StackPane layout = new StackPane();
