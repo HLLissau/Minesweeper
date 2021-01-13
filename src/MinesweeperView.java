@@ -57,7 +57,7 @@ public class MinesweeperView {
 		layout.getChildren().add(grid);
 		
 		childrens = grid.getChildren();
-		System.out.println("End of start method" + childrens);
+		//System.out.println("End of start method" + childrens);
 		
 		Scene scene = new Scene(layout, 23*this.x, 25*this.y);
 		stage.setScene(scene);
@@ -67,13 +67,15 @@ public class MinesweeperView {
 	
 	
 	public Stage gameOver() {
+		System.out.println("Test");
+		
 		Stage gameOverScreen = new Stage();
 		gameOverScreen.setTitle("Game Over");
 		
 		//button
 		Button button = new Button();
 		button.setText("New game");
-		//button.setOnAction(e -> controller.gotoNewGame());
+		button.setOnAction(e -> controller.gotoNewGame(gameOverScreen));
 		
 		//Layout
 		StackPane layout = new StackPane();
@@ -82,9 +84,11 @@ public class MinesweeperView {
 		Scene scene= new Scene(layout,200,150);
 		gameOverScreen.setScene(scene);
 		gameOverScreen.show();
+		stopGame();
 		return gameOverScreen;
 	}
 	public Stage victory() {
+		
 		Stage gameOverScreen = new Stage();
 		gameOverScreen.setTitle("Victory");
 		
@@ -100,7 +104,14 @@ public class MinesweeperView {
 		Scene scene= new Scene(layout,200,150);
 		gameOverScreen.setScene(scene);
 		gameOverScreen.show();
+		stopGame();
 		return gameOverScreen;
+	}
+	public void stopGame() {
+		for (int i =0; i< childrens.size();i++) {
+			MinesweeperButton temp =(MinesweeperButton) childrens.get(i);
+			temp.setOnAction(null);
+		}
 	}
 	
 }

@@ -16,6 +16,9 @@ public class MinesweeperController {
 	ObservableList<Node> childrens;
 	GridPane grid;
 	int gameState;
+	
+	
+	
 	public MinesweeperController(MinesweeperModel model, MinesweeperView view) {
 		this.view = view;
 		this.model = model;
@@ -24,14 +27,19 @@ public class MinesweeperController {
 	public int getNext(Point updatepoint) {
 		
 		int cell = model.getPos(updatepoint);
-		gameState=model.testConditions(updatepoint);
+		
+	return cell;	
+	}
+	
+	public void checkGameState(int gamestate) {
+		this.gameState=gamestate;
+		System.out.println(gamestate);
 		if (gameState == 8) {
-			//view.gameOver();
-		}
-		if (gameState == 9) {
 			view.victory();
 		}
-	return cell;	
+		if (gameState == 9) {
+			view.gameOver();
+		}
 	
 	}
 	public int buttonPressed(MinesweeperButton mbutton) {
@@ -54,7 +62,7 @@ public class MinesweeperController {
 			}
 		}
 		
-		
+		checkGameState(cell);
 		
 		
 		return cell;
@@ -103,6 +111,7 @@ public class MinesweeperController {
 				
 	}
 	public void gotoNewGame(Stage thisStage) {
+		
 		view.basicGame();
 		thisStage.close();
 		}
