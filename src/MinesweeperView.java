@@ -69,6 +69,23 @@ public class MinesweeperView {
 		gameOverScreen.show();
 		return gameOverScreen;
 	}
-
+	public Stage victory() {
+		Stage gameOverScreen = new Stage();
+		gameOverScreen.setTitle("Game Over");
+		
+		//button
+		Button button = new Button();
+		button.setText("New game");
+		//button.setOnAction(e -> controller.gotoNewGame());
+		
+		//Layout
+		StackPane layout = new StackPane();
+		layout.getChildren().add(button);
+		
+		Scene scene= new Scene(layout,200,150);
+		gameOverScreen.setScene(scene);
+		gameOverScreen.show();
+		return gameOverScreen;
+	}
 	
 }
