@@ -22,7 +22,7 @@ public class MinesweeperView {
 	public Image[] pictures() {
 		Image[] pictures = new Image[10];
 		
-		for(int i = 1; i<10; i++) {
+		for(int i = 0; i<10; i++) {
 			String name = i + ".png";
 			pictures [i] = new Image(name);
 			
