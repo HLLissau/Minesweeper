@@ -3,7 +3,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class startMinesweeper extends Application {
+<<<<<<< HEAD
 	int m,n,bombs;
+=======
+	int x,y,bombs;
+	
+>>>>>>> 9df50d09f23c5dbfa4c7d11d9faa6f06dfb099b4
 	MinesweeperView view;
 	MinesweeperModel model;
 	MinesweeperController controller;
@@ -12,13 +17,30 @@ public class startMinesweeper extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-		
+	
+	
+	/*
+	 * Load arguments into game.
+	 * creates a new Model, view and controller.
+	 * Set options for game
+	 * Open a game window
+	 * 
+	 * Input: arguments given by user(size of board and number of bombs)
+	 * Output: new game window
+	 * 	
+	 */
 	public void start(Stage topLevelStage) throws Exception {
+<<<<<<< HEAD
 		List<String> cliParams = getParameters().getRaw();
 		int[] intParams = fetchArgs(cliParams);
 		m = 10; // intParams[0];
 		n =  10; // intParams[1];
 		bombs = 10; // intParams[2];
+=======
+		x = 10;
+		y = 10;
+		bombs = 99;
+>>>>>>> 9df50d09f23c5dbfa4c7d11d9faa6f06dfb099b4
 		
 		view = new MinesweeperView();
 		model = new MinesweeperModel(m,n,bombs);
