@@ -3,7 +3,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class MinesweeperController {
 	MinesweeperModel model;
