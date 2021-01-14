@@ -3,12 +3,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class startMinesweeper extends Application {
-<<<<<<< HEAD
 	int m,n,bombs;
-=======
-	int x,y,bombs;
 	
->>>>>>> 9df50d09f23c5dbfa4c7d11d9faa6f06dfb099b4
 	MinesweeperView view;
 	MinesweeperModel model;
 	MinesweeperController controller;
@@ -30,23 +26,17 @@ public class startMinesweeper extends Application {
 	 * 	
 	 */
 	public void start(Stage topLevelStage) throws Exception {
-<<<<<<< HEAD
 		List<String> cliParams = getParameters().getRaw();
 		int[] intParams = fetchArgs(cliParams);
-		m = 10; // intParams[0];
-		n =  10; // intParams[1];
-		bombs = 10; // intParams[2];
-=======
-		x = 10;
-		y = 10;
-		bombs = 99;
->>>>>>> 9df50d09f23c5dbfa4c7d11d9faa6f06dfb099b4
+		m = intParams[0];
+		n =  intParams[1];
+		bombs = intParams[2];
 		
 		view = new MinesweeperView();
 		model = new MinesweeperModel(m,n,bombs);
 		controller = new MinesweeperController(model, view);
 		
-		view.SetOptions(topLevelStage, controller, "basicgame");
+		view.SetOptions(topLevelStage, controller, "Minesweeper");
 		topLevelStage = view.basicGame();
 		topLevelStage.show();
 	}

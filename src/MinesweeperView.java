@@ -1,16 +1,11 @@
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
 import javafx.scene.image.Image;
 
 public class MinesweeperView {
@@ -36,7 +31,7 @@ public class MinesweeperView {
 		this.images = new Image[10];
 		
 		for(int i = 0; i<10; i++) {
-			String name ="images\\" + i + ".png";
+			String name ="images/" + i + ".png";
 			images[i] = new Image(name);
 			
 		}
@@ -103,9 +98,6 @@ public class MinesweeperView {
 		window.setScene(scene);
 		window.show();
 		// When window is closed. opens a new game.
-		
-		
-	
 		
 	}
 }

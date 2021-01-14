@@ -3,6 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class MinesweeperController {
 	MinesweeperModel model;
@@ -82,13 +83,11 @@ public class MinesweeperController {
 	 * Ask model for new game. lose input stage. View loads new game.
 	 * Input: Stage
 	 */
-<<<<<<< HEAD
 	public void gotoNewGame(Stage thisStage) {
-		model = new MinesweeperModel(model.getm(),model.getn(),model.getBombAmount() );
-=======
-	public void gotoNewGame() {
-		model = new MinesweeperModel(model.getSizex(),model.getSizey(),model.getBombAmount() );
->>>>>>> 9df50d09f23c5dbfa4c7d11d9faa6f06dfb099b4
+		model = new MinesweeperModel(model.getm(),model.getn(),model.getBombAmount());
+	}
+		public void gotoNewGame() {
+		model = new MinesweeperModel(model.getm(),model.getn(),model.getBombAmount());
 		view.basicGame();
 		
 		
