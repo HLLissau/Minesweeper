@@ -98,12 +98,36 @@ public class MinesweeperModel{
 			}
 		}
 	}
+	
+	
+	/*
+	 * Looks if gameover or victory conditions are met. 
+	 * input: Point of last pressed button
+	 * 
+	 */
 	public void testConditions(Point nextTile) {
-		if (defeatCondition(nextTile.x, nextTile.y)) {
+		if (defeatCondition(nextTile)) {
 			this.endCondition =9;
 		} else if (victoryCondition()) {
 			this.endCondition =8;
 		} 
+	}
+	
+	/*
+	 * Victory condition are met, if all buttons, except bombs are pressed.
+	 *  
+	 * output: Boolean value.
+	 */
+	private boolean victoryCondition() {
+		return ((this.sizex*this.sizey)-this.bombAmount == this.clickedFields);
+	}
+	/*
+	 * Defeat condition are met, 
+	 * Input: Button pressed position
+	 * Output: Boolean value.
+	 */
+	private boolean defeatCondition(Point nextTile) {
+		return gameState[nextTile.x][nextTile.y] == 9;
 	}
 
 	//The remaining functions are used to get game parameters
@@ -115,11 +139,6 @@ public class MinesweeperModel{
 		return this.sizey;
 	}
 	
-	public int[][] getGameState() {
-		return gameState;
-	}
-
-	
 	public int getBombAmount() {
 		return this.bombAmount;
 	}
@@ -128,13 +147,7 @@ public class MinesweeperModel{
 		return this.clickedFields;
 	}
 	
-	private boolean victoryCondition() {
-		return ((this.sizex*this.sizey)-this.bombAmount == this.clickedFields);
-	}
 	
-	private boolean defeatCondition(int x, int y) {
-		return gameState[x][y] == 9;
-	}
 	public int getEndCondition() {
 		return this.endCondition;
 	}

@@ -60,14 +60,18 @@ public class MinesweeperView {
 		return stage;
 	}
 	
-	//Open game over window
+	/*
+	 * Open game over window.
+	 * Output: new Stage with game over window. This window contains a button, if pressed begins a new game.
+	 */
+	
 	public Stage gameOver() {
 		
 		controller.clearButtonAction();
 		Stage gameOverScreen = new Stage();
 		gameOverScreen.setTitle("Game Over");
 		
-		//button
+		//button (Begin new game)
 		Button button = new Button();
 		button.setText("New game");
 		button.setOnAction(e -> controller.gotoNewGame(gameOverScreen));
@@ -83,25 +87,29 @@ public class MinesweeperView {
 		return gameOverScreen;
 	}
 	
-	//Open victory window
+	/*
+	 * Open victory window
+	 * Output: new Stage with victory screen. This window contains a button, if pressed begins a new game.
+	 */
 	public Stage victory() {
 		
-		Stage gameOverScreen = new Stage();
-		gameOverScreen.setTitle("Victory");
+		controller.clearButtonAction();
+		Stage victoryScreen = new Stage();
+		victoryScreen.setTitle("Victory");
 		
-		//button
+		//button (Begin new game)
 		Button button = new Button();
 		button.setText("New game");
-		button.setOnAction(e -> controller.gotoNewGame(gameOverScreen));
+		button.setOnAction(e -> controller.gotoNewGame(victoryScreen));
 		
 		//Layout
 		StackPane layout = new StackPane();
 		layout.getChildren().add(button);
 		
 		Scene scene= new Scene(layout,200,150);
-		gameOverScreen.setScene(scene);
-		gameOverScreen.show();
+		victoryScreen.setScene(scene);
+		victoryScreen.show();
 		controller.clearButtonAction();
-		return gameOverScreen;
+		return victoryScreen;
 	}
 }
