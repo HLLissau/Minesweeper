@@ -9,7 +9,6 @@ public class MinesweeperView {
 	Stage stage;
 	String title;
 	Image[] images;
-	int x,y;
 	
 	//MinesweeperView initiates constructor to make view
 	public MinesweeperView() {
@@ -17,9 +16,7 @@ public class MinesweeperView {
 	}
 	
 	//Set game parameters
-	public void SetOptions(Stage topLevelStage, MinesweeperController controller, int x, int y, String title) {
-		this.x = x;
-		this.y = y;
+	public void SetOptions(Stage topLevelStage, MinesweeperController controller, String title) {
 		this.stage = topLevelStage;
 		this.controller = controller;
 		this.title = title;
@@ -55,7 +52,7 @@ public class MinesweeperView {
 		this.stage.setTitle(title);
 		StackPane layout = new StackPane();
 		layout.getChildren().add(controller.getGrid());
-		Scene scene = new Scene(layout, 23*this.x, 25*this.y);
+		Scene scene = new Scene(layout, 23*controller.model.getm(), 25*controller.model.getn());
 		stage.setScene(scene);
 		return stage;
 	}

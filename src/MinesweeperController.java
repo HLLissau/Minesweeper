@@ -60,8 +60,8 @@ public class MinesweeperController {
 	 */
 	public GridPane getGrid() {
 		grid = new GridPane();
-		for (int i =0; i<model.getSizey(); i++) {
-			for (int j =0; j<model.getSizex(); j++) {
+		for (int i =0; i<model.getm(); i++) {
+			for (int j =0; j<model.getn(); j++) {
 				MinesweeperButton button = new MinesweeperButton(j,i);
 				button.setText("  ");
 				button.setOnAction(e->buttonPressed(button));
@@ -73,7 +73,7 @@ public class MinesweeperController {
 		
 		for (int i=0;i<children.size();i++) {
 			MinesweeperButton button = (MinesweeperButton) children.get(i);
-			button.setNeighbours(model.getSizex(),model.getSizey(),children);
+			button.setNeighbours(model.getm(),model.getn(),children);
 		}
 		
 		return grid;
@@ -84,7 +84,7 @@ public class MinesweeperController {
 	 * Input: Stage
 	 */
 	public void gotoNewGame(Stage thisStage) {
-		model = new MinesweeperModel(model.getSizex(),model.getSizey(),model.getBombAmount() );
+		model = new MinesweeperModel(model.getm(),model.getn(),model.getBombAmount() );
 		view.basicGame();
 		
 		thisStage.close();
@@ -94,7 +94,7 @@ public class MinesweeperController {
 	 * Remaining buttons are deactivated 
 	 */
 	public void clearButtonAction() {
-		for (int i =0; i< ((model.getSizex()*model.getSizey())-model.getAmountClickedFields()); i++) {
+		for (int i =0; i< ((model.getm()*model.getn())-model.getAmountClickedFields()); i++) {
 			MinesweeperButton temp =(MinesweeperButton) children.get(i);
 			temp.setOnAction(null);
 		}
