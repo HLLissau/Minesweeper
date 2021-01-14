@@ -105,7 +105,7 @@ public class MinesweeperModel{
 	 * input: Point of last pressed button
 	 * 
 	 */
-	public void testConditions(Point nextTile) {
+	private void testConditions(Point nextTile) {
 		if (defeatCondition(nextTile)) {
 			this.endCondition =9;
 		} else if (victoryCondition()) {
