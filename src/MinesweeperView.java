@@ -1,7 +1,14 @@
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.awt.TextArea;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 public class MinesweeperView {
@@ -65,51 +72,32 @@ public class MinesweeperView {
 	 * Output: new Stage with game over window. This window contains a button, if pressed begins a new game.
 	 */
 	
-	public Stage gameOver() {
+	public void alertBox(String title, String text) {
+		//controller.clearButtonAction();
+		Stage window = new Stage();
+		window.setTitle(title);
+		//Force user to interact with window
+		window.initModality(Modality.APPLICATION_MODAL);
 		
-		controller.clearButtonAction();
-		Stage gameOverScreen = new Stage();
-		gameOverScreen.setTitle("Game Over");
+		//
+		Label label = new Label();
+		label.setText(text);
 		
 		//button (Begin new game)
 		Button button = new Button();
 		button.setText("New game");
-		button.setOnAction(e -> controller.gotoNewGame(gameOverScreen));
+		button.setOnAction(e -> window.close());
 		
 		//Layout
 		StackPane layout = new StackPane();
-		layout.getChildren().add(button);
+		layout.getChildren().addAll(label, button);
 		Scene scene= new Scene(layout,200,150);
-		gameOverScreen.setScene(scene);
-		gameOverScreen.show();
+		window.setScene(scene);
+		window.show();
+		window.setOnCloseRequest(e -> controller.gotoNewGame());
 		
-		
-		return gameOverScreen;
-	}
 	
-	/*
-	 * Open victory window
-	 * Output: new Stage with victory screen. This window contains a button, if pressed begins a new game.
-	 */
-	public Stage victory() {
 		
-		controller.clearButtonAction();
-		Stage victoryScreen = new Stage();
-		victoryScreen.setTitle("Victory");
-		
-		//button (Begin new game)
-		Button button = new Button();
-		button.setText("New game");
-		button.setOnAction(e -> controller.gotoNewGame(victoryScreen));
-		
-		//Layout
-		StackPane layout = new StackPane();
-		layout.getChildren().add(button);
-		
-		Scene scene= new Scene(layout,200,150);
-		victoryScreen.setScene(scene);
-		victoryScreen.show();
-		controller.clearButtonAction();
-		return victoryScreen;
 	}
 }
+	

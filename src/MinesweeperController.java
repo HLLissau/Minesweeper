@@ -83,11 +83,11 @@ public class MinesweeperController {
 	 * Ask model for new game. lose input stage. View loads new game.
 	 * Input: Stage
 	 */
-	public void gotoNewGame(Stage thisStage) {
+	public void gotoNewGame() {
 		model = new MinesweeperModel(model.getSizex(),model.getSizey(),model.getBombAmount() );
 		view.basicGame();
 		
-		thisStage.close();
+		
 		}
 
 	/*
@@ -111,10 +111,10 @@ public class MinesweeperController {
 		
 		int condition =model.getEndCondition();
 		if (condition == 8) {
-			view.victory();
+			view.alertBox("Victory", "Congratulations. You won!");
 		}
 		if (condition == 9) {
-			view.gameOver();
+			view.alertBox("Game over", "You lost!");
 		}
 	
 	}
