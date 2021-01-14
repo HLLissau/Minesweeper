@@ -110,7 +110,7 @@ public class MinesweeperModel{
 			this.endCondition =9;
 		} else if (victoryCondition()) {
 			this.endCondition =8;
-		} 
+		}
 	}
 	
 	/*
