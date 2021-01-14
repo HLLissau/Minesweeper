@@ -71,6 +71,7 @@ public class MinesweeperView {
 	
 	/*
 	 * Open game over window.
+	 * Input: Title and message to display.
 	 * Output: new Stage with game over window. This window contains a button, if pressed begins a new game.
 	 */
 	
@@ -78,6 +79,7 @@ public class MinesweeperView {
 		//controller.clearButtonAction();
 		Stage window = new Stage();
 		window.setTitle(title);
+		window.setOnCloseRequest(e -> controller.gotoNewGame());
 		//Force user to interact with window
 		window.initModality(Modality.APPLICATION_MODAL);
 		
@@ -88,7 +90,12 @@ public class MinesweeperView {
 		//button (Begin new game)
 		Button button = new Button();
 		button.setText("New game");
-		button.setOnAction(e -> window.close());
+		button.setOnAction(e -> {
+			controller.gotoNewGame();
+			window.close();
+		});
+		
+		
 		
 		//Layout
 		VBox layout = new VBox(10);
@@ -98,7 +105,8 @@ public class MinesweeperView {
 		Scene scene= new Scene(layout);
 		window.setScene(scene);
 		window.show();
-		window.setOnCloseRequest(e -> controller.gotoNewGame());
+		// When window is closed. opens a new game.
+		
 		
 	
 		
