@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class MinesweeperModel{
 	public int[][] knownGameState;
 	private int[][] gameState;
-	private int sizex;
-	private int sizey;
+	private int m;
+	private int n;
 	private int bombAmount;
 	private int isGameStarted;
 	private int clickedFields;
@@ -15,17 +15,28 @@ public class MinesweeperModel{
 	
 	/*
 	 * (made by all)
-	 * Creates a standard (n x m) game with x bombs
-	 * Input: Game size given as x and y, along with amount of bombs.
+	 * Creates a standard (n x m) game where bombAmount specifies 
+	 * the amount of bombs to be generated later on
+	 * The constructor also makes sure that m,n is in the interval [4,100]
+	 * and that bombAmount is less than the total number of fields (m*n) and greater than 0
+	 * Input: Game board size given as m by n, along with amount of bombs.
 	 */
-	public MinesweeperModel(int sizex, int sizey, int bombAmount) {
-		this.knownGameState = new int[sizex][sizey] ;
-		this.gameState = new int[sizex][sizey];
-		this.sizex=sizex;
-		this.sizey=sizey;
+	public MinesweeperModel(int m, int n, int bombAmount) {
+		if (m > 100) m = 100;
+		else if (m < 4) m = 4;
+		if (n > 100) n = 100;
+		else if (n < 4) n = 4;
+		if (bombAmount >= m*n) bombAmount = m*n-1;
+		else if (bombAmount < 1) bombAmount = 1;
+		
+		this.knownGameState = new int[m][n] ;
+		this.gameState = new int[m][n];
+		this.m=m;
+		this.n=n;
 		this.clickedFields=0;
 		this.bombAmount= bombAmount;
 		isGameStarted=1;
+		
 	}
 	
 	/*
@@ -61,15 +72,15 @@ public class MinesweeperModel{
 	 */
 	public void randomBombGenerator(int bombAmount, Point firstClicked) {
 		this.bombAmount=bombAmount;
-		int fieldAmount=(this.sizex*this.sizey);
+		int fieldAmount=(this.m*this.n);
 		this.availableFields = new ArrayList<Point>();
-		for (int i=0; i<this.sizey; i++) {
-			for ( int j=0; j<this.sizex;j++) {
+		for (int i=0; i<this.n; i++) {
+			for ( int j=0; j<this.m;j++) {
 				this.gameState[j][i]=0;
 				availableFields.add(new Point(j,i));
 			}
 		}
-		availableFields.remove(firstClicked.x+this.sizex*firstClicked.y);
+		availableFields.remove(firstClicked.x+this.m*firstClicked.y);
 		for (int i=0; i<bombAmount;i++) {
 			int nextBomb= (int) (Math.random()*(fieldAmount-i-1));
 			Point nextBombPlacement = availableFields.remove(nextBomb);
@@ -84,13 +95,13 @@ public class MinesweeperModel{
 	 * For each bomb the neighbors value is increased by one, except if it is already a bomb.
 	 */
 	public void nearBombs() {
-		for (int i = 0; i < this.sizey; i++) {
-			for (int j = 0; j < this.sizex; j++) {
+		for (int i = 0; i < this.n; i++) {
+			for (int j = 0; j < this.m; j++) {
 				if (gameState[j][i] == 9) {
 					for (int k = -1; k <= 1; k++) {
 						for (int l =-1; l <= 1; l++) { 
 							//The following if statement ensures that the program stays within the array
-							if (i+k >= 0 && i+k < this.sizey && j+l >=0 && j+l < this.sizex) {
+							if (i+k >= 0 && i+k < this.n && j+l >=0 && j+l < this.m) {
 								gameState[j+l][i+k] += 1;
 								if (gameState[j+l][i+k] > 9) {
 									gameState[j+l][i+k] = 9;
@@ -125,7 +136,7 @@ public class MinesweeperModel{
 	 * output: Boolean value.
 	 */
 	private boolean victoryCondition() {
-		return ((this.sizex*this.sizey)-this.bombAmount == this.clickedFields);
+		return ((this.m*this.n)-this.bombAmount == this.clickedFields);
 	}
 	/*
 	 * Anton
@@ -139,12 +150,12 @@ public class MinesweeperModel{
 
 	//The remaining functions are used to get game parameters
 	//(Made by group)
-	public int getSizex() {
-		return this.sizex;
+	public int getm() {
+		return this.m;
 	}
 	
-	public int getSizey() {
-		return this.sizey;
+	public int getn() {
+		return this.n;
 	}
 	
 	public int getBombAmount() {

@@ -3,6 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class MinesweeperController {
 	MinesweeperModel model;
@@ -52,8 +53,8 @@ public class MinesweeperController {
 	 */
 	public GridPane getGrid() {
 		grid = new GridPane();
-		for (int i =0; i<model.getSizey(); i++) {
-			for (int j =0; j<model.getSizex(); j++) {
+		for (int i =0; i<model.getm(); i++) {
+			for (int j =0; j<model.getn(); j++) {
 				MinesweeperButton button = new MinesweeperButton(j,i);
 				button.setText("  ");
 				button.setOnAction(e->buttonPressed(button));
@@ -65,7 +66,7 @@ public class MinesweeperController {
 		
 		for (int i=0;i<children.size();i++) {
 			MinesweeperButton button = (MinesweeperButton) children.get(i);
-			button.setNeighbours(model.getSizex(),model.getSizey(),children);
+			button.setNeighbours(model.getm(),model.getn(),children);
 		}
 		
 		return grid;
@@ -76,12 +77,26 @@ public class MinesweeperController {
 	 * Set model to new game with Input parameters.
 	 * Input: Width,Height,Bombs,difficulty
 	 */
-	public void gotoNewGame() {
-		model = new MinesweeperModel(model.getSizex(),model.getSizey(),model.getBombAmount() );
+	public void gotoNewGame(Stage thisStage) {
+		model = new MinesweeperModel(model.getm(),model.getn(),model.getBombAmount());
+	}
+		public void gotoNewGame() {
+		model = new MinesweeperModel(model.getm(),model.getn(),model.getBombAmount());
 		view.basicGame();
 		
 		
 		}
+
+	/*
+	 * Anton
+	 * Remaining buttons are deactivated 
+	 */
+	public void clearButtonAction() {
+		for (int i =0; i< ((model.getm()*model.getn())-model.getAmountClickedFields()); i++) {
+			MinesweeperButton temp =(MinesweeperButton) children.get(i);
+			temp.setOnAction(null);
+		}
+	}
 
 	/*
 	 * Anton
