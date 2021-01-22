@@ -21,11 +21,13 @@ public class MinesweeperView {
 	int x,y;
 	
 	//MinesweeperView initiates constructor to make view
+	//Anton
 	public MinesweeperView() {
 		setPictures();
 	}
 	
 	//Set game parameters
+	//Anton
 	public void SetOptions(Stage topLevelStage, MinesweeperController controller, int x, int y, String title) {
 		this.x = x;
 		this.y = y;
@@ -35,6 +37,7 @@ public class MinesweeperView {
 	}
 	
 	//Load pictures to images array
+	//Anton
 	public void setPictures() {
 		this.images = new Image[10];
 		
@@ -46,6 +49,7 @@ public class MinesweeperView {
 	}
 	
 	/*
+	 * Anton
 	 * Load pictures from view to game. If out of bounds, last index is returned.
 	 * Input: x (array index)
 	 * Output: Image from array index (x)
@@ -60,6 +64,7 @@ public class MinesweeperView {
 	
 	
 	//Sets the stage
+	//Harald
 	public Stage basicGame() {
 		this.stage.setTitle(title);
 		StackPane layout = new StackPane();
@@ -70,6 +75,7 @@ public class MinesweeperView {
 	}
 	
 	/*
+	 * Erik
 	 * Open game over window.
 	 * Input: Title and message to display.
 	 * Output: new Stage with game over window. This window contains a button, if pressed begins a new game.

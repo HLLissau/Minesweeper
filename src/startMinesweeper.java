@@ -15,6 +15,7 @@ public class startMinesweeper extends Application {
 	
 	
 	/*
+	 * The entire group
 	 * Load arguments into game.
 	 * creates a new Model, view and controller.
 	 * Set options for game
@@ -27,7 +28,7 @@ public class startMinesweeper extends Application {
 	public void start(Stage topLevelStage) throws Exception {
 		x = 10;
 		y = 10;
-		bombs = 99;
+		bombs = 10;
 		
 		view = new MinesweeperView();
 		model = new MinesweeperModel(x,y,bombs);

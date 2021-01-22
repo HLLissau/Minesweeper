@@ -14,6 +14,7 @@ public class MinesweeperModel{
 	private int endCondition;
 	
 	/*
+	 * (made by all)
 	 * Creates a standard (n x m) game with x bombs
 	 * Input: Game size given as x and y, along with amount of bombs.
 	 */
@@ -28,6 +29,7 @@ public class MinesweeperModel{
 	}
 	
 	/*
+	 * Erik
 	 * transfer given [x,y] set from gamestate to knowngamestate.
 	 * Input: Point position to update
 	 * Output: number of neighbors (9 = bombs).
@@ -49,6 +51,7 @@ public class MinesweeperModel{
 	}
 	
 	/*
+	 * Harald
 	 * Sets all elements in gameState[][] to 0, bombs are inserted hereafter randomly.
 	 * Creates list of unoccupied fields for placement of bombs.
 	 * For each iteration of the loop, puts a bomb on an unoccupied field, and removes field from list.
@@ -76,6 +79,7 @@ public class MinesweeperModel{
 	}
 	
 	/*
+	 * Erik
 	 * Iterates through gameState[][] looking for bombs.
 	 * For each bomb the neighbors value is increased by one, except if it is already a bomb.
 	 */
@@ -101,6 +105,7 @@ public class MinesweeperModel{
 	
 	
 	/*
+	 * Anton
 	 * Looks if gameover or victory conditions are met. 
 	 * input: Point of last pressed button
 	 * 
@@ -114,6 +119,7 @@ public class MinesweeperModel{
 	}
 	
 	/*
+	 * Anton
 	 * Victory condition are met, if all buttons, except bombs are pressed.
 	 *  
 	 * output: Boolean value.
@@ -122,6 +128,7 @@ public class MinesweeperModel{
 		return ((this.sizex*this.sizey)-this.bombAmount == this.clickedFields);
 	}
 	/*
+	 * Anton
 	 * Defeat condition are met, 
 	 * Input: Button pressed position
 	 * Output: Boolean value.
@@ -131,6 +138,7 @@ public class MinesweeperModel{
 	}
 
 	//The remaining functions are used to get game parameters
+	//(Made by group)
 	public int getSizex() {
 		return this.sizex;
 	}

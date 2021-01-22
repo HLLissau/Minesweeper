@@ -11,16 +11,20 @@ public class MinesweeperController {
 	ObservableList<Node> children;
 	GridPane grid;
 	
-	//Import model and view to controller through constructor
+	/*
+	 * Erik
+	 * Import View and highscore into controller.
+	 */
 	public MinesweeperController(MinesweeperModel model, MinesweeperView view) {
 		this.view = view;
 		this.model = model;
 	}
 	
 	/*
-	 *Calls model for change in position.
-	 *Input: point from view.
-	 *Output: number of neighbors (9 = bombs).
+	 * Erik
+	 * Calls model for change in position.
+	 * Input: point from view.
+	 * Output: number of neighbors (9 = bombs).
 	 */
 	public int getNext(Point updatepoint) {
 		int cell = model.getPos(updatepoint);
@@ -28,33 +32,22 @@ public class MinesweeperController {
 	}
 	
 	/*
-	 *Program is informed which button the user has pressed. Checks endCondition to see if game is still operational.
-	 *When button is pressed, function removes button and inserts image.
-	 *Input: MinesweeperButton.
+	 * Erik
+	 * Program is informed which button the user has pressed. Checks endCondition to see if game is still operational.
+	 * When button is pressed, function removes button and inserts image.
+	 * Input: MinesweeperButton.
 	 */
 	public void buttonPressed(MinesweeperButton pressedButton) {
 		grid.getChildren().remove(pressedButton);
 		int cell = getNext(pressedButton.getPos());
 		grid.add(new ImageView(view.getPicture(cell)), pressedButton.getPos().x, pressedButton.getPos().y);
-		
-		/*
-		int gameState = model.testConditions(button.getPos());
-		childrens = grid.getChildren();
-		
-		if (cell==0) {
-			ArrayList<MinesweeperButton> temp = pressedButton.getneighbours();
-			while (temp.size()>0) {
-				
-				buttonPressed(temp.remove(0));
-			}
-		}
-		*/
 		checkEndCondition(model, pressedButton.getPos());
 		
 	}
 	
-	/*
-	 * Creates GridPane and inserts buttons. Updates children, with list of buttons.
+	/* 
+	 * Harald
+	 * Creates GridPane and inserts buttons. Updates ObservableList, with MinesweeperButtons.
 	 * Output: New GridPane
 	 */
 	public GridPane getGrid() {
@@ -79,8 +72,9 @@ public class MinesweeperController {
 	}
 	
 	/*
-	 * Ask model for new game. lose input stage. View loads new game.
-	 * Input: Stage
+	 * Erik
+	 * Set model to new game with Input parameters.
+	 * Input: Width,Height,Bombs,difficulty
 	 */
 	public void gotoNewGame() {
 		model = new MinesweeperModel(model.getSizex(),model.getSizey(),model.getBombAmount() );
@@ -90,16 +84,7 @@ public class MinesweeperController {
 		}
 
 	/*
-	 * Remaining buttons are deactivated 
-	 */
-	public void clearButtonAction() {
-		for (int i =0; i< ((model.getSizex()*model.getSizey())-model.getAmountClickedFields()); i++) {
-			MinesweeperButton temp =(MinesweeperButton) children.get(i);
-			temp.setOnAction(null);
-		}
-	}
-
-	/*
+	 * Anton
 	 * Checks for victory and defeat condition.
 	 * If endCondition value is 8, the user has won.
 	 * If endCondition value is 9, the user has lost.
